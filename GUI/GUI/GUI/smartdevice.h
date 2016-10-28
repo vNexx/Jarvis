@@ -1,17 +1,17 @@
 #ifndef SMARTDEVICE_H
 #define SMARTDEVICE_H
 
-#include <QObject>
-#include <QWidget>
+//#include <QObject>
+//#include <QWidget>
 #include <QString>
 #include <QMessageBox>
 
-class SmartDevice : public QWidget
+class SmartDevice //: public QWidget
 {
-    Q_OBJECT
+    //Q_OBJECT
 public:
-    explicit SmartDevice(QWidget *parent = 0);
-             SmartDevice(QWidget *parent, const QString &groupName, const QString &deviceName, int id);
+    explicit SmartDevice(/*QWidget *parent = 0*/);
+             SmartDevice(/*QWidget *parent,*/ const QString &groupName, const QString &deviceName, int id);
     virtual ~SmartDevice();
 
     bool            setGroupName(const QString& name);
@@ -26,19 +26,19 @@ public:
 
 
 protected:
-    QString     groupName;
-    QString     deviceName;
-    int         deviceID;
-    bool        deviceStatus;  //вкл/выкл
+    QString                  groupName;
+    QString                  deviceName;
+    int                      deviceID;
+    bool                     deviceStatus;  //вкл/выкл
 
 
     virtual bool        updateDeviceConfig();  //написать
     virtual bool        uploadDeviceConfig();  //написать
 
 
-signals:
+//signals:
 
-public slots:
+//public slots:
 };
 
 #endif // SMARTDEVICE_H

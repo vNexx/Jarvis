@@ -6,8 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->verticalScrollBar->hide();
-    //this->setLayout(ui->mainLayout);
+    ui->verticalScrollBar->hide();   
+    ui->deleteButton->setDisabled(true);
+    ui->settingsButton->setDisabled(true);
 }
 
 MainWindow::~MainWindow()
@@ -15,16 +16,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-bool MainWindow::checkName(QString name) const
+bool MainWindow::checkName(const QString& name) const
 {
     for(int i = 0; i < ui->verticalLayoutLeft->count(); ++i)
     {
         DynamicButton *button = qobject_cast<DynamicButton*>(ui->verticalLayoutLeft->itemAt(i)->widget());
-        if(button->text() == name)
-        {
-            QMessageBox::information(nullptr, QString("warning"), QString("Error. Name is alredy used"));
+        if(button->text() == name)                 
             return false;
-        }
 
     }
     return true;
@@ -42,12 +40,15 @@ void MainWindow::on_addButton_clicked()
 
     if (checkName(ui->lineEdit->text()))
     {
+        ui->deleteButton->setDisabled(false);
+        ui->settingsButton->setDisabled(false);
 
         DynamicButton *button = new DynamicButton(this);  // Создаем объект динамической кнопки
 
         /* Устанавливаем имя кнопки с заданым именем
          * */
         button->setText(ui->lineEdit->text());
+        button->setDeviceName(ui->lineEdit->text());
 
         /* Добавляем кнопку в слой с вертикальной компоновкой
          * */
@@ -59,6 +60,9 @@ void MainWindow::on_addButton_clicked()
          * */
         connect(button, SIGNAL(clicked()), this, SLOT(slotGetButtonName()));
     }
+    else
+        QMessageBox::information(nullptr, QString("warning"), QString("Error. Name is alredy used"));
+
 }
 
 /* Метод для удаления динамической кнопки по её номеру
@@ -103,5 +107,36 @@ void MainWindow::slotGetButtonName()
 
 void MainWindow::on_settingsButton_clicked()
 {
+    if(checkName(ui->lineEdit->text()))
+        QMessageBox::information(nullptr, QString("warning"), QString("Name doesn't exist"));
+    else
+    {
+        for(int i = 0; i < ui->verticalLayoutLeft->count(); ++i)
+        {
+            DynamicButton *button = qobject_cast<DynamicButton*>(ui->verticalLayoutLeft->itemAt(i)->widget());
+            if(button->text() == ui->lineEdit->text())
+            {
+                SettingsDialogWindow *settings = new SettingsDialogWindow(this, button);
+                settings->show();//вызов диалогового окна настроек
+            }
+        }
+    }
+
+}
+
+void MainWindow::on_lineEdit_textChanged(const QString &arg1)
+{
+    if(arg1.isEmpty())
+    {
+        ui->addButton->setDisabled(true);
+        ui->deleteButton->setDisabled(true);
+        ui->settingsButton->setDisabled(true);
+    }
+    else
+    {
+        ui->addButton->setDisabled(false);
+        ui->deleteButton->setDisabled(false);
+        ui->settingsButton->setDisabled(false);
+    }
 
 }

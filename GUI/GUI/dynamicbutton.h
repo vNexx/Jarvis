@@ -1,11 +1,11 @@
 #ifndef DYNAMICBUTTON_H
 #define DYNAMICBUTTON_H
-#include <QPushButton>
-#include <QMessageBox>
+
+#include "smartbulb.h"
 
 #define maxButtonAmount 100
 
-class DynamicButton : public QPushButton
+class DynamicButton :  public SmartBulb
 {
     Q_OBJECT
 public:

@@ -7,9 +7,10 @@ SmartBulb::SmartBulb(QWidget *parent)  : SmartDevice(parent)
 
 }
 
-SmartBulb::SmartBulb(QWidget *parent, const QString &groupName, const QString &deviceName, int id, int brightness, bulbColor color)
+SmartBulb::SmartBulb(QWidget *parent, const QString &groupName, const QString &deviceName, int id, int brightness, bulbColor color) :
+    SmartDevice(parent, groupName, deviceName, id)
 {
-    SmartDevice(parent, groupName, deviceName, id);
+
     this->brightness = brightness;
     if(brightness <= 0)
         this->brightness = 1;
@@ -38,7 +39,7 @@ bool SmartBulb::setBrightness(int brightness)
     else
     {
         this->brightness = temp;
-        QMessageBox::information(this, QString("warning"), QString("Error. Cannot upload bulb config"));
+        QMessageBox::information(nullptr, QString("warning"), QString("Error. Cannot upload bulb config"));
         return false;
     }
 }
@@ -52,7 +53,7 @@ bool SmartBulb::setBulbColor(bulbColor color)
     else
     {
         this->color = temp;
-        QMessageBox::information(this, QString("warning"), QString("Error. Cannot upload bulb config"));
+        QMessageBox::information(nullptr, QString("warning"), QString("Error. Cannot upload bulb config"));
         return false;
     }
 }
@@ -66,3 +67,10 @@ bulbColor SmartBulb::getBulbColor() const
 {
     return color;
 }
+
+QString SmartBulb::getDeviceType() const
+{
+    return deviceType;
+}
+
+const QString SmartBulb::deviceType = QString("Smart Bulb");

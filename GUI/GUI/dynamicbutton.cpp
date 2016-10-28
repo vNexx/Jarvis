@@ -1,6 +1,6 @@
 #include "dynamicbutton.h"
 
-DynamicButton::DynamicButton(QWidget *parent) : QPushButton(parent)
+DynamicButton::DynamicButton(QWidget *parent) :  SmartBulb(parent)
 {
 
     buttonID = findNewID();   /* Присвоение кнопке номера, по которому булет производиться
