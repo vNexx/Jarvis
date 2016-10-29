@@ -21,6 +21,8 @@ private slots:
 
     void on_buttonBox_clicked(QAbstractButton *button);
 
+    void on_statusRadioButton_clicked();
+
 private:
     Ui::SettingsDialogWindow *ui;
     DynamicButton *deviceButton;

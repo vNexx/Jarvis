@@ -5,9 +5,7 @@ SettingsDialogWindow::SettingsDialogWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialogWindow)
 {
-    ui->setupUi(this);
-    ui->idEdit->setDisabled(true);
-    ui->deviceTypeEdit->setDisabled(true);
+    ui->setupUi(this);  
 }
 
 
@@ -17,15 +15,21 @@ SettingsDialogWindow::SettingsDialogWindow(QWidget *parent, DynamicButton *btn) 
 
     deviceButton = btn;
 
-    ui->idEdit->setText(QString::number(deviceButton->getID()));
-    ui->deviceTypeEdit->setText(deviceButton->getDeviceType());
+    ui->idLabel->setText(QString::number(deviceButton->getID()));
+    ui->deviceTypelabel->setText(deviceButton->getDeviceType());
     ui->nameEdit->setText(deviceButton->getDeviceName());
     ui->GroupNameEdit->setText(deviceButton->getGroupName());
 
     if(deviceButton->getDeviceStatus())
-        ui->statusEdit->setText(QString("On"));
+    {
+        ui->statusLabel->setText(QString("ON"));
+        ui->statusRadioButton->setChecked(true);
+    }
     else
-        ui->statusEdit->setText(QString("Off"));
+    {
+        ui->statusLabel->setText(QString("OFF"));
+        ui->statusRadioButton->setChecked(false);
+    }
 
 }
 
@@ -51,5 +55,21 @@ void SettingsDialogWindow::on_buttonBox_clicked(QAbstractButton *button)
             QMessageBox::information(nullptr, QString("warning"), QString("Error. Empty device name"));
 
         deviceButton->setGroupName(ui->GroupNameEdit->text());
+
+        if(ui->statusRadioButton->isChecked())
+            deviceButton->turnOnDevice();
+        else
+            deviceButton->turnOffFevice();
+
+
+
     }
+}
+
+void SettingsDialogWindow::on_statusRadioButton_clicked()
+{
+    if(ui->statusRadioButton->isChecked())
+        ui->statusLabel->setText(QString("ON"));
+    else
+        ui->statusLabel->setText(QString("OFF"));
 }

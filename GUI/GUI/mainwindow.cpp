@@ -44,6 +44,7 @@ void MainWindow::on_addButton_clicked()
         ui->settingsButton->setDisabled(false);
 
         DynamicButton *button = new DynamicButton(this);  // Создаем объект динамической кнопки
+        buttonList.push_back(button);
 
         /* Устанавливаем имя кнопки с заданым именем
          * */
@@ -53,12 +54,13 @@ void MainWindow::on_addButton_clicked()
         /* Добавляем кнопку в слой с вертикальной компоновкой
          * */
         ui->verticalLayoutLeft->addWidget(button);
-        if (ui->verticalLayoutLeft->count() > 6)
+
+        if (buttonList.size() > 6)
             ui->verticalScrollBar->show();
 
         /* Подключаем сигнал нажатия кнопки к СЛОТ получения номера кнопки
          * */
-        connect(button, SIGNAL(clicked()), this, SLOT(slotGetButtonName()));
+        connect(button, SIGNAL(clicked()), this, SLOT(slotGetButtonName()));       
     }
     else
         QMessageBox::information(nullptr, QString("warning"), QString("Error. Name is alredy used"));
@@ -71,20 +73,24 @@ void MainWindow::on_deleteButton_clicked()
 {
     /* Выполняем перебор всех элементов слоя, где располагаются динамические кнопки
      * */
-    for(int i = 0; i < ui->verticalLayoutLeft->count(); ++i)
-    {
-        /* Производим каст элемента слоя в объект динамической кнопки
-         * */
-        DynamicButton *button = qobject_cast<DynamicButton*>(ui->verticalLayoutLeft->itemAt(i)->widget());
+    for(size_t i = 0; i < buttonList.size(); ++i)
+    {        
+        DynamicButton *button = buttonList[i];
         /* Если название кнопки соответсвует строке, которая установлена
          * в lineEdit, то производим удаление данной кнопки
          * */
-        if(button->text() == ui->lineEdit->text()){
+        if(button->text() == ui->lineEdit->text())
+        {
+            for(size_t j = i; j < buttonList.size() - 1; ++j)
+                buttonList[j] = buttonList[j + 1];           //сдвигаем список кнопок
+            buttonList.pop_back();                           //удаляем последний элемент из списка
+
             button->hide();
             delete button;
+            break;
         }
     }
-    if (ui->verticalLayoutLeft->count() <= 6)
+    if (buttonList.size() <= 6)
         ui->verticalScrollBar->hide();
 }
 

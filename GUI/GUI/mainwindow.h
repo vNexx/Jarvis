@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QScrollBar>
 #include <QMessageBox>
+#include <vector>
 #include "dynamicbutton.h"
 #include "settingsdialogwindow.h"
 
@@ -32,6 +33,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    std::vector<DynamicButton*> buttonList;
 
 
 };
