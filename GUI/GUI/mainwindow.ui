@@ -29,6 +29,9 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
       <property name="lineWidth">
        <number>1</number>
       </property>
@@ -39,13 +42,13 @@
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
+       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
       <property name="alignment">
-       <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+       <set>Qt::AlignJustify|Qt::AlignTop</set>
       </property>
       <widget class="QWidget" name="scrollAreaWidgetContents">
        <property name="geometry">
@@ -56,21 +59,15 @@
          <height>293</height>
         </rect>
        </property>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>131</width>
-          <height>271</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayoutLeft">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetMinAndMaxSize</enum>
-         </property>
-        </layout>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayoutLeft">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMaximumSize</enum>
+          </property>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

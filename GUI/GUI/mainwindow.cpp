@@ -19,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
                     "   min-height: 25px;"
                     "   padding: 5px;"
                     "}"
+                    "QPushButton:disabled {"
+                    "   background-color: #989898;"
+                    "   color: #fff;"
+                    " }"
                     "QPushButton:hover {"
                     "   background-color: #61b7ff;"
                     " }"
@@ -28,11 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
                     "QPushButton:pressed {"
                     "   background-color: #54dff0;"
                     " }"
-                    "QPushButton:disabled {"
-                    "   color: #fff;"
-                    "   backgrounf-color: #989898;"
-
-                    " }";
+                    ;
 
 
     ui->addButton->setStyleSheet(stylesList[0]);

@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -39,7 +40,7 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QWidget *verticalLayoutWidget;
+    QGridLayout *gridLayout;
     QVBoxLayout *verticalLayoutLeft;
     QSpacerItem *horizontalSpacer_3;
     QVBoxLayout *verticalLayout;
@@ -80,24 +81,27 @@ public:
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setMinimumSize(QSize(100, 60));
         scrollArea->setMaximumSize(QSize(250, 16777215));
+        scrollArea->setLayoutDirection(Qt::LeftToRight);
         scrollArea->setLineWidth(1);
         scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
         scrollArea->setWidgetResizable(true);
-        scrollArea->setAlignment(Qt::AlignJustify|Qt::AlignVCenter);
+        scrollArea->setAlignment(Qt::AlignJustify|Qt::AlignTop);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 157, 293));
-        verticalLayoutWidget = new QWidget(scrollAreaWidgetContents);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(10, 10, 131, 271));
-        verticalLayoutLeft = new QVBoxLayout(verticalLayoutWidget);
+        gridLayout = new QGridLayout(scrollAreaWidgetContents);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        verticalLayoutLeft = new QVBoxLayout();
         verticalLayoutLeft->setSpacing(6);
-        verticalLayoutLeft->setContentsMargins(11, 11, 11, 11);
         verticalLayoutLeft->setObjectName(QStringLiteral("verticalLayoutLeft"));
-        verticalLayoutLeft->setSizeConstraint(QLayout::SetMinAndMaxSize);
-        verticalLayoutLeft->setContentsMargins(0, 0, 0, 0);
+        verticalLayoutLeft->setSizeConstraint(QLayout::SetMaximumSize);
+
+        gridLayout->addLayout(verticalLayoutLeft, 0, 0, 1, 1);
+
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout_4->addWidget(scrollArea);
