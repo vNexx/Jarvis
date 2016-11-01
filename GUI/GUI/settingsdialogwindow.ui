@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>344</width>
-    <height>266</height>
+    <width>398</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,8 +22,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>220</y>
+     <x>100</x>
+     <y>280</y>
      <width>291</width>
      <height>41</height>
     </rect>
@@ -57,11 +57,14 @@
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>30</y>
-     <width>251</width>
-     <height>171</height>
+     <x>40</x>
+     <y>40</y>
+     <width>301</width>
+     <height>181</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -74,13 +77,18 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>90</width>
+      <width>111</width>
       <height>151</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="vertNameLabelsLayout">
      <item>
       <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Device Name:</string>
        </property>
@@ -88,6 +96,11 @@
      </item>
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Group Name:</string>
        </property>
@@ -95,6 +108,11 @@
      </item>
      <item>
       <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Device Status:</string>
        </property>
@@ -102,6 +120,11 @@
      </item>
      <item>
       <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Device ID:</string>
        </property>
@@ -109,6 +132,11 @@
      </item>
      <item>
       <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Device Type:</string>
        </property>
@@ -119,15 +147,20 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>150</x>
       <y>10</y>
       <width>127</width>
-      <height>52</height>
+      <height>60</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
       <widget class="QLineEdit" name="GroupNameEdit">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>name</string>
        </property>
@@ -135,6 +168,11 @@
      </item>
      <item>
       <widget class="QLineEdit" name="nameEdit">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>name</string>
        </property>
@@ -145,9 +183,9 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>111</x>
-      <y>77</y>
-      <width>46</width>
+      <x>150</x>
+      <y>80</y>
+      <width>52</width>
       <height>20</height>
      </rect>
     </property>
@@ -157,6 +195,11 @@
      </property>
      <item>
       <widget class="QLabel" name="statusLabel">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>OFF</string>
        </property>
@@ -164,6 +207,11 @@
      </item>
      <item>
       <widget class="QRadioButton" name="statusRadioButton">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -174,9 +222,9 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>111</x>
+      <x>150</x>
       <y>100</y>
-      <width>84</width>
+      <width>104</width>
       <height>61</height>
      </rect>
     </property>
@@ -186,6 +234,11 @@
      </property>
      <item>
       <widget class="QLabel" name="idLabel">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>ID</string>
        </property>
@@ -196,6 +249,11 @@
      </item>
      <item>
       <widget class="QLabel" name="deviceTypelabel">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Smart Device</string>
        </property>

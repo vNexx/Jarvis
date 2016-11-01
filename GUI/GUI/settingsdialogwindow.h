@@ -3,6 +3,7 @@
 #include <QDialog>
 #include <vector>
 #include "dynamicbutton.h"
+#include "styles.h"
 
 namespace Ui {
 class SettingsDialogWindow;
@@ -28,7 +29,7 @@ private:
     Ui::SettingsDialogWindow *ui;
     DynamicButton *deviceButton;
     std::vector<DynamicButton*> buttonList;
-    QString stylesList[10];
+    QString stylesList[stylesAmount];
 
 };
 

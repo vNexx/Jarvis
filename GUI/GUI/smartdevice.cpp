@@ -121,7 +121,7 @@ bool SmartDevice::turnOnDevice()
     }
 }
 
-bool SmartDevice::turnOffFevice()
+bool SmartDevice::turnOffDevice()
 {
     bool temp =  deviceStatus;
     deviceStatus = false;

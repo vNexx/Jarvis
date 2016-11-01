@@ -17,13 +17,21 @@ SOURCES += main.cpp\
     smartdevice.cpp \
     smartbulb.cpp \
     settingsdialogwindow.cpp \
-    dynamicbutton.cpp
+    dynamicbutton.cpp \
+    styles.cpp \
+    smartbulbconfig.cpp
 
 HEADERS  += mainwindow.h \
     smartdevice.h \
     smartbulb.h \
     settingsdialogwindow.h \
-    dynamicbutton.h
+    dynamicbutton.h \
+    styles.h \
+    smartbulbconfig.h
 
 FORMS    += mainwindow.ui \
-    settingsdialogwindow.ui
+    settingsdialogwindow.ui \
+    smartbulbconfig.ui
+
+RESOURCES += \
+    res.qrc

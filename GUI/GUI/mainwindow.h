@@ -5,8 +5,8 @@
 #include <QScrollBar>
 #include <QMessageBox>
 #include <vector>
-#include "dynamicbutton.h"
 #include "settingsdialogwindow.h"
+#include "smartbulbconfig.h"
 
 
 namespace Ui {
@@ -24,9 +24,10 @@ public:
     bool checkName(const QString &name) const;
 
 private slots:
-    void on_addButton_clicked();    // СЛОТ-обработчик нажатия кнопки добавления
-    void on_deleteButton_clicked(); // СЛОТ-обработчик нажатия кнопки удаления
-    void slotGetButtonName();       // СЛОТ для получения имени нажатой динамической кнопки
+    void on_addButton_clicked();    // Слот-обработчик нажатия кнопки добавления
+    void on_deleteButton_clicked(); // Слот-обработчик нажатия кнопки удаления
+    void slotGetButtonName();       // Слот для получения имени нажатой динамической кнопки
+    void slotOpenDeviceConfig();    // Слот окрывающий окно настроек устройства(кнопки)
 
     void on_settingsButton_clicked();
     void on_lineEdit_textChanged(const QString &str);
@@ -34,7 +35,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     std::vector<DynamicButton*> buttonList;
-    QString stylesList[10];
+    QString stylesList[stylesAmount];
 
 
 };

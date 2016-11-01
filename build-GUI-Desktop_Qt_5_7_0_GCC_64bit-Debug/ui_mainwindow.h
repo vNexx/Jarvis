@@ -203,11 +203,11 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "J.A.R.V.I.S.", 0));
         actionJ_A_R_V_I_S_project->setText(QApplication::translate("MainWindow", "J.A.R.V.I.S project", 0));
         actionDevelopers->setText(QApplication::translate("MainWindow", "Developers", 0));
         label->setText(QApplication::translate("MainWindow", "Enter device name", 0));
-        lineEdit->setText(QApplication::translate("MainWindow", "name", 0));
+        lineEdit->setText(QApplication::translate("MainWindow", "Smart Device", 0));
 #ifndef QT_NO_STATUSTIP
         addButton->setStatusTip(QString());
 #endif // QT_NO_STATUSTIP

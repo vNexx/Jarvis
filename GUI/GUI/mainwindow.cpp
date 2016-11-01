@@ -10,30 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->deleteButton->setDisabled(true);
     ui->settingsButton->setDisabled(true);
-    stylesList[0] = "QPushButton {"
-                    "   background-color: rgb(93, 240, 84);"
-                    "   border : none;"
-                    "   font:  14px;"
-                    "   max-width: 200px;"
-                    "   min-width: 80px;"
-                    "   min-height: 20px;"
-                    "   padding: 5px;"
-                    "}"
-                    "QPushButton:disabled {"
-                    "   background-color: #989898;"
-                    "   color: #fff;"
-                    " }"
-                    "QPushButton:hover {"
-                    "   background-color: #61b7ff;"
-                    " }"
-                    "QPushButton:focus { "
-                    "   background-color: #61b7ff;"
-                    " }"
-                    "QPushButton:pressed {"
-                    "   background-color: #54dff0;"
-                    " }"
-                    ;
 
+    setStyles(stylesList);
 
     ui->addButton->setStyleSheet(stylesList[0]);
     ui->deleteButton->setStyleSheet(stylesList[0]);
@@ -93,7 +71,9 @@ void MainWindow::on_addButton_clicked()
 
         /* Подключаем сигнал нажатия кнопки к СЛОТ получения номера кнопки
          * */
-        connect(button, SIGNAL(clicked()), this, SLOT(slotGetButtonName()));       
+        connect(button, SIGNAL(clicked()), this, SLOT(slotGetButtonName()));
+        connect(button, SIGNAL(clicked()), this, SLOT(slotOpenDeviceConfig()));
+
     }
     else
         QMessageBox::information(nullptr, QString("warning"), QString("Error. Name is alredy used"));
@@ -177,5 +157,12 @@ void MainWindow::on_lineEdit_textChanged(const QString &str)
         ui->deleteButton->setDisabled(false);
         ui->settingsButton->setDisabled(false);
     }
+
+}
+
+void MainWindow::slotOpenDeviceConfig()
+{
+    SmartBulbConfig *configWindow = new SmartBulbConfig(this, (DynamicButton*) sender());
+    configWindow->show(); //вызов диалогового окна настроек
 
 }

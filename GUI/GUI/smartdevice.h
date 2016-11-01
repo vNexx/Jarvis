@@ -17,8 +17,8 @@ public:
     virtual bool    setDeviceName(const QString& name);
     bool            setDeviceID(int id);
     bool            turnOnDevice();                 //включить устройство
-    bool            turnOffFevice();                //выключить устройство
-    bool            getDeviceStatus() const;
+    bool            turnOffDevice();                //выключить устройство
+    bool            getDeviceStatus() const;       // равно true если устройство включено
     QString         getGroupName() const;
     QString         getDeviceName() const;
     int             getDeviceID() const;

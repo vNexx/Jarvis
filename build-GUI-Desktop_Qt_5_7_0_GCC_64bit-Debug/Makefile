@@ -53,22 +53,30 @@ SOURCES       = ../GUI/GUI/main.cpp \
 		../GUI/GUI/smartdevice.cpp \
 		../GUI/GUI/smartbulb.cpp \
 		../GUI/GUI/settingsdialogwindow.cpp \
-		../GUI/GUI/dynamicbutton.cpp moc_mainwindow.cpp \
+		../GUI/GUI/dynamicbutton.cpp \
+		../GUI/GUI/styles.cpp \
+		../GUI/GUI/smartbulbconfig.cpp qrc_res.cpp \
+		moc_mainwindow.cpp \
 		moc_smartdevice.cpp \
 		moc_smartbulb.cpp \
 		moc_settingsdialogwindow.cpp \
-		moc_dynamicbutton.cpp
+		moc_dynamicbutton.cpp \
+		moc_smartbulbconfig.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		smartdevice.o \
 		smartbulb.o \
 		settingsdialogwindow.o \
 		dynamicbutton.o \
+		styles.o \
+		smartbulbconfig.o \
+		qrc_res.o \
 		moc_mainwindow.o \
 		moc_smartdevice.o \
 		moc_smartbulb.o \
 		moc_settingsdialogwindow.o \
-		moc_dynamicbutton.o
+		moc_dynamicbutton.o \
+		moc_smartbulbconfig.o
 DIST          = ../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.7/gcc_64/mkspecs/common/unix.conf \
 		../../Qt/5.7/gcc_64/mkspecs/common/linux.conf \
@@ -222,12 +230,16 @@ DIST          = ../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../GUI/GUI/smartdevice.h \
 		../GUI/GUI/smartbulb.h \
 		../GUI/GUI/settingsdialogwindow.h \
-		../GUI/GUI/dynamicbutton.h ../GUI/GUI/main.cpp \
+		../GUI/GUI/dynamicbutton.h \
+		../GUI/GUI/styles.h \
+		../GUI/GUI/smartbulbconfig.h ../GUI/GUI/main.cpp \
 		../GUI/GUI/mainwindow.cpp \
 		../GUI/GUI/smartdevice.cpp \
 		../GUI/GUI/smartbulb.cpp \
 		../GUI/GUI/settingsdialogwindow.cpp \
-		../GUI/GUI/dynamicbutton.cpp
+		../GUI/GUI/dynamicbutton.cpp \
+		../GUI/GUI/styles.cpp \
+		../GUI/GUI/smartbulbconfig.cpp
 QMAKE_TARGET  = GUI
 DESTDIR       = 
 TARGET        = GUI
@@ -236,7 +248,7 @@ TARGET        = GUI
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_settingsdialogwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_settingsdialogwindow.h ui_smartbulbconfig.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../GUI/GUI/GUI.pro ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
@@ -389,6 +401,7 @@ Makefile: ../GUI/GUI/GUI.pro ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.pr
 		../../../Qt/5.7/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/lex.prf \
 		../GUI/GUI/GUI.pro \
+		../GUI/GUI/res.qrc \
 		../../../Qt/5.7/gcc_64/lib/libQt5Widgets.prl \
 		../../../Qt/5.7/gcc_64/lib/libQt5Gui.prl \
 		../../../Qt/5.7/gcc_64/lib/libQt5Core.prl
@@ -543,6 +556,7 @@ Makefile: ../GUI/GUI/GUI.pro ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.pr
 ../../../Qt/5.7/gcc_64/mkspecs/features/yacc.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/lex.prf:
 ../GUI/GUI/GUI.pro:
+../GUI/GUI/res.qrc:
 ../../../Qt/5.7/gcc_64/lib/libQt5Widgets.prl:
 ../../../Qt/5.7/gcc_64/lib/libQt5Gui.prl:
 ../../../Qt/5.7/gcc_64/lib/libQt5Core.prl:
@@ -560,9 +574,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../GUI/GUI/mainwindow.h ../GUI/GUI/smartdevice.h ../GUI/GUI/smartbulb.h ../GUI/GUI/settingsdialogwindow.h ../GUI/GUI/dynamicbutton.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../GUI/GUI/main.cpp ../GUI/GUI/mainwindow.cpp ../GUI/GUI/smartdevice.cpp ../GUI/GUI/smartbulb.cpp ../GUI/GUI/settingsdialogwindow.cpp ../GUI/GUI/dynamicbutton.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../GUI/GUI/mainwindow.ui ../GUI/GUI/settingsdialogwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../GUI/GUI/res.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../GUI/GUI/mainwindow.h ../GUI/GUI/smartdevice.h ../GUI/GUI/smartbulb.h ../GUI/GUI/settingsdialogwindow.h ../GUI/GUI/dynamicbutton.h ../GUI/GUI/styles.h ../GUI/GUI/smartbulbconfig.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../GUI/GUI/main.cpp ../GUI/GUI/mainwindow.cpp ../GUI/GUI/smartdevice.cpp ../GUI/GUI/smartbulb.cpp ../GUI/GUI/settingsdialogwindow.cpp ../GUI/GUI/dynamicbutton.cpp ../GUI/GUI/styles.cpp ../GUI/GUI/smartbulbconfig.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../GUI/GUI/mainwindow.ui ../GUI/GUI/settingsdialogwindow.ui ../GUI/GUI/smartbulbconfig.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -586,11 +601,18 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_res.cpp
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_smartdevice.cpp moc_smartbulb.cpp moc_settingsdialogwindow.cpp moc_dynamicbutton.cpp
+	-$(DEL_FILE) qrc_res.cpp
+qrc_res.cpp: ../GUI/GUI/res.qrc \
+		../../../Qt/5.7/gcc_64/bin/rcc \
+		../GUI/GUI/bulbOff.png \
+		../GUI/GUI/bulbOn.png
+	/home/nexx/Qt/5.7/gcc_64/bin/rcc -name res ../GUI/GUI/res.qrc -o qrc_res.cpp
+
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_smartdevice.cpp moc_smartbulb.cpp moc_settingsdialogwindow.cpp moc_dynamicbutton.cpp moc_smartbulbconfig.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_smartdevice.cpp moc_smartbulb.cpp moc_settingsdialogwindow.cpp moc_dynamicbutton.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_smartdevice.cpp moc_smartbulb.cpp moc_settingsdialogwindow.cpp moc_dynamicbutton.cpp moc_smartbulbconfig.cpp
 moc_mainwindow.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qwidget.h \
@@ -697,6 +719,8 @@ moc_mainwindow.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qdialog.h \
+		../GUI/GUI/settingsdialogwindow.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
 		../GUI/GUI/dynamicbutton.h \
 		../GUI/GUI/smartbulb.h \
 		../GUI/GUI/smartdevice.h \
@@ -704,8 +728,9 @@ moc_mainwindow.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
-		../GUI/GUI/settingsdialogwindow.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
+		../GUI/GUI/styles.h \
+		../GUI/GUI/smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/bin/moc
 	/home/nexx/Qt/5.7/gcc_64/bin/moc $(DEFINES) -I/home/nexx/Qt/5.7/gcc_64/mkspecs/linux-g++ -I/home/nexx/github/Jarvis/GUI/GUI -I/home/nexx/Qt/5.7/gcc_64/include -I/home/nexx/Qt/5.7/gcc_64/include/QtWidgets -I/home/nexx/Qt/5.7/gcc_64/include/QtGui -I/home/nexx/Qt/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../GUI/GUI/mainwindow.h -o moc_mainwindow.cpp
@@ -1035,6 +1060,7 @@ moc_settingsdialogwindow.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
+		../GUI/GUI/styles.h \
 		../GUI/GUI/settingsdialogwindow.h \
 		../../../Qt/5.7/gcc_64/bin/moc
 	/home/nexx/Qt/5.7/gcc_64/bin/moc $(DEFINES) -I/home/nexx/Qt/5.7/gcc_64/mkspecs/linux-g++ -I/home/nexx/github/Jarvis/GUI/GUI -I/home/nexx/Qt/5.7/gcc_64/include -I/home/nexx/Qt/5.7/gcc_64/include/QtWidgets -I/home/nexx/Qt/5.7/gcc_64/include/QtGui -I/home/nexx/Qt/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../GUI/GUI/settingsdialogwindow.h -o moc_settingsdialogwindow.cpp
@@ -1149,11 +1175,125 @@ moc_dynamicbutton.cpp: ../GUI/GUI/smartbulb.h \
 		../../../Qt/5.7/gcc_64/bin/moc
 	/home/nexx/Qt/5.7/gcc_64/bin/moc $(DEFINES) -I/home/nexx/Qt/5.7/gcc_64/mkspecs/linux-g++ -I/home/nexx/github/Jarvis/GUI/GUI -I/home/nexx/Qt/5.7/gcc_64/include -I/home/nexx/Qt/5.7/gcc_64/include/QtWidgets -I/home/nexx/Qt/5.7/gcc_64/include/QtGui -I/home/nexx/Qt/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../GUI/GUI/dynamicbutton.h -o moc_dynamicbutton.cpp
 
+moc_smartbulbconfig.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfeatures.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
+		../GUI/GUI/dynamicbutton.h \
+		../GUI/GUI/smartbulb.h \
+		../GUI/GUI/smartdevice.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QPushButton \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/QString \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
+		../GUI/GUI/styles.h \
+		../GUI/GUI/smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/bin/moc
+	/home/nexx/Qt/5.7/gcc_64/bin/moc $(DEFINES) -I/home/nexx/Qt/5.7/gcc_64/mkspecs/linux-g++ -I/home/nexx/github/Jarvis/GUI/GUI -I/home/nexx/Qt/5.7/gcc_64/include -I/home/nexx/Qt/5.7/gcc_64/include/QtWidgets -I/home/nexx/Qt/5.7/gcc_64/include/QtGui -I/home/nexx/Qt/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../GUI/GUI/smartbulbconfig.h -o moc_smartbulbconfig.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_settingsdialogwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_settingsdialogwindow.h ui_smartbulbconfig.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_settingsdialogwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_settingsdialogwindow.h ui_smartbulbconfig.h
 ui_mainwindow.h: ../GUI/GUI/mainwindow.ui \
 		../../../Qt/5.7/gcc_64/bin/uic
 	/home/nexx/Qt/5.7/gcc_64/bin/uic ../GUI/GUI/mainwindow.ui -o ui_mainwindow.h
@@ -1162,13 +1302,17 @@ ui_settingsdialogwindow.h: ../GUI/GUI/settingsdialogwindow.ui \
 		../../../Qt/5.7/gcc_64/bin/uic
 	/home/nexx/Qt/5.7/gcc_64/bin/uic ../GUI/GUI/settingsdialogwindow.ui -o ui_settingsdialogwindow.h
 
+ui_smartbulbconfig.h: ../GUI/GUI/smartbulbconfig.ui \
+		../../../Qt/5.7/gcc_64/bin/uic
+	/home/nexx/Qt/5.7/gcc_64/bin/uic ../GUI/GUI/smartbulbconfig.ui -o ui_smartbulbconfig.h
+
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -1279,6 +1423,8 @@ main.o: ../GUI/GUI/main.cpp ../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qdialog.h \
+		../GUI/GUI/settingsdialogwindow.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
 		../GUI/GUI/dynamicbutton.h \
 		../GUI/GUI/smartbulb.h \
 		../GUI/GUI/smartdevice.h \
@@ -1286,8 +1432,9 @@ main.o: ../GUI/GUI/main.cpp ../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
-		../GUI/GUI/settingsdialogwindow.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
+		../GUI/GUI/styles.h \
+		../GUI/GUI/smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qapplication.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1404,6 +1551,8 @@ mainwindow.o: ../GUI/GUI/mainwindow.cpp ../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qdialog.h \
+		../GUI/GUI/settingsdialogwindow.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
 		../GUI/GUI/dynamicbutton.h \
 		../GUI/GUI/smartbulb.h \
 		../GUI/GUI/smartdevice.h \
@@ -1411,8 +1560,9 @@ mainwindow.o: ../GUI/GUI/mainwindow.cpp ../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
-		../GUI/GUI/settingsdialogwindow.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
+		../GUI/GUI/styles.h \
+		../GUI/GUI/smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		ui_mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
@@ -1796,6 +1946,7 @@ settingsdialogwindow.o: ../GUI/GUI/settingsdialogwindow.cpp ../GUI/GUI/settingsd
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
+		../GUI/GUI/styles.h \
 		ui_settingsdialogwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
@@ -1960,6 +2111,203 @@ dynamicbutton.o: ../GUI/GUI/dynamicbutton.cpp ../GUI/GUI/dynamicbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dynamicbutton.o ../GUI/GUI/dynamicbutton.cpp
 
+styles.o: ../GUI/GUI/styles.cpp ../GUI/GUI/styles.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/QString \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfeatures.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o styles.o ../GUI/GUI/styles.cpp
+
+smartbulbconfig.o: ../GUI/GUI/smartbulbconfig.cpp ../GUI/GUI/smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfeatures.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
+		../GUI/GUI/dynamicbutton.h \
+		../GUI/GUI/smartbulb.h \
+		../GUI/GUI/smartdevice.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QPushButton \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/QString \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
+		../GUI/GUI/styles.h \
+		ui_smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QCheckBox \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qcheckbox.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.7/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QLCDNumber \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlcdnumber.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o smartbulbconfig.o ../GUI/GUI/smartbulbconfig.cpp
+
+qrc_res.o: qrc_res.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_res.o qrc_res.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
@@ -1974,6 +2322,9 @@ moc_settingsdialogwindow.o: moc_settingsdialogwindow.cpp
 
 moc_dynamicbutton.o: moc_dynamicbutton.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dynamicbutton.o moc_dynamicbutton.cpp
+
+moc_smartbulbconfig.o: moc_smartbulbconfig.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_smartbulbconfig.o moc_smartbulbconfig.cpp
 
 ####### Install
 
