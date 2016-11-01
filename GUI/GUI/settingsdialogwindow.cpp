@@ -9,16 +9,45 @@ SettingsDialogWindow::SettingsDialogWindow(QWidget *parent) :
 }
 
 
-SettingsDialogWindow::SettingsDialogWindow(QWidget *parent, DynamicButton *btn) : SettingsDialogWindow(parent)
+SettingsDialogWindow::SettingsDialogWindow(QWidget *parent, DynamicButton *btn, const std::vector<DynamicButton *> &btnList) : SettingsDialogWindow(parent)
 
 {
 
     deviceButton = btn;
+    buttonList = btnList;
 
     ui->idLabel->setText(QString::number(deviceButton->getID()));
     ui->deviceTypelabel->setText(deviceButton->getDeviceType());
     ui->nameEdit->setText(deviceButton->getDeviceName());
     ui->GroupNameEdit->setText(deviceButton->getGroupName());
+
+    stylesList[0] = "QPushButton {"
+                    "   background-color: rgb(93, 240, 84);"
+                    "   border : none;"
+                    "   font:  14px;"
+                    "   max-width: 200px;"
+                    "   min-width: 80px;"
+                    "   min-height: 20px;"
+                    "   margin: 5px;"
+                    "   padding: 5px;"
+                    "}"
+                    "QPushButton:disabled {"
+                    "   background-color: #989898;"
+                    "   color: #fff;"
+                    " }"
+                    "QPushButton:hover {"
+                    "   background-color: #61b7ff;"
+                    " }"
+                    "QPushButton:focus { "
+                    "   background-color: #61b7ff;"
+                    " }"
+                    "QPushButton:pressed {"
+                    "   background-color: #54dff0;"
+                    " }"
+                    ;
+    ui->buttonBox->setStyleSheet(stylesList[0]);
+    //ui->buttonBox->button(QDialogButtonBox::Apply)->setStyleSheet(stylesList[0]);
+
 
     if(deviceButton->getDeviceStatus())
     {
@@ -48,6 +77,15 @@ void SettingsDialogWindow::on_buttonBox_clicked(QAbstractButton *button)
     {
         if(!ui->nameEdit->text().isEmpty())
         {
+            for(size_t i = 0; i < buttonList.size(); ++i)
+            {
+                DynamicButton *button = buttonList[i];
+                if(button->getDeviceName() == ui->nameEdit->text())
+                {
+                    QMessageBox::information(nullptr, QString("Warning"), QString("Name is already used"));
+                    return;
+                }
+            }
             deviceButton->setDeviceName(ui->nameEdit->text());
             deviceButton->setText(ui->nameEdit->text());
         }

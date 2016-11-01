@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
                     "   font:  14px;"
                     "   max-width: 200px;"
                     "   min-width: 80px;"
-                    "   min-height: 25px;"
+                    "   min-height: 20px;"
                     "   padding: 5px;"
                     "}"
                     "QPushButton:disabled {"
@@ -155,7 +155,7 @@ void MainWindow::on_settingsButton_clicked()
             DynamicButton *button = buttonList[i];
             if(button->text() == ui->lineEdit->text())
             {
-                SettingsDialogWindow *settings = new SettingsDialogWindow(this, button);
+                SettingsDialogWindow *settings = new SettingsDialogWindow(this, button, buttonList);
                 settings->show(); //вызов диалогового окна настроек
             }
         }

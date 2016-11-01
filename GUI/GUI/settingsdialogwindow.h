@@ -1,6 +1,7 @@
 #ifndef SETTINGSDIALOGWINDOW_H
 #define SETTINGSDIALOGWINDOW_H
 #include <QDialog>
+#include <vector>
 #include "dynamicbutton.h"
 
 namespace Ui {
@@ -13,7 +14,7 @@ class SettingsDialogWindow : public QDialog
 
 public:
     explicit SettingsDialogWindow(QWidget *parent = 0);
-    SettingsDialogWindow(QWidget *parent, DynamicButton *btn);
+    SettingsDialogWindow(QWidget *parent, DynamicButton *btn, const std::vector<DynamicButton*> &btnList);
     ~SettingsDialogWindow();
 
 private slots:
@@ -26,6 +27,8 @@ private slots:
 private:
     Ui::SettingsDialogWindow *ui;
     DynamicButton *deviceButton;
+    std::vector<DynamicButton*> buttonList;
+    QString stylesList[10];
 
 };
 

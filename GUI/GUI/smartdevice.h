@@ -5,7 +5,7 @@
 #include <QString>
 #include <QMessageBox>
 
-class SmartDevice : public QPushButton //: public QWidget
+class SmartDevice : public QPushButton
 {
     Q_OBJECT
 public:

@@ -32,25 +32,25 @@ class Ui_SettingsDialogWindow
 public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
-    QSpacerItem *horizontalSpacer;
     QDialogButtonBox *buttonBox;
+    QSpacerItem *horizontalSpacer;
     QFrame *frame;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QVBoxLayout *vertNameLabelsLayout;
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
     QLabel *label_5;
-    QWidget *widget1;
+    QWidget *layoutWidget2;
     QVBoxLayout *verticalLayout_3;
     QLineEdit *GroupNameEdit;
     QLineEdit *nameEdit;
-    QWidget *widget2;
+    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *statusLabel;
     QRadioButton *statusRadioButton;
-    QWidget *widget3;
+    QWidget *layoutWidget4;
     QVBoxLayout *verticalLayout;
     QLabel *idLabel;
     QLabel *deviceTypelabel;
@@ -64,14 +64,10 @@ public:
         SettingsDialogWindow->setModal(true);
         layoutWidget = new QWidget(SettingsDialogWindow);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(80, 230, 260, 24));
+        layoutWidget->setGeometry(QRect(50, 220, 291, 41));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
         buttonBox = new QDialogButtonBox(layoutWidget);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
         buttonBox->setOrientation(Qt::Horizontal);
@@ -79,96 +75,97 @@ public:
 
         horizontalLayout->addWidget(buttonBox);
 
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
         frame = new QFrame(SettingsDialogWindow);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setGeometry(QRect(20, 30, 251, 171));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
-        widget = new QWidget(frame);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 90, 151));
-        vertNameLabelsLayout = new QVBoxLayout(widget);
+        layoutWidget1 = new QWidget(frame);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 10, 90, 151));
+        vertNameLabelsLayout = new QVBoxLayout(layoutWidget1);
         vertNameLabelsLayout->setObjectName(QStringLiteral("vertNameLabelsLayout"));
         vertNameLabelsLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget1);
         label->setObjectName(QStringLiteral("label"));
 
         vertNameLabelsLayout->addWidget(label);
 
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget1);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         vertNameLabelsLayout->addWidget(label_2);
 
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget1);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         vertNameLabelsLayout->addWidget(label_3);
 
-        label_4 = new QLabel(widget);
+        label_4 = new QLabel(layoutWidget1);
         label_4->setObjectName(QStringLiteral("label_4"));
 
         vertNameLabelsLayout->addWidget(label_4);
 
-        label_5 = new QLabel(widget);
+        label_5 = new QLabel(layoutWidget1);
         label_5->setObjectName(QStringLiteral("label_5"));
 
         vertNameLabelsLayout->addWidget(label_5);
 
-        widget1 = new QWidget(frame);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(110, 10, 127, 52));
-        verticalLayout_3 = new QVBoxLayout(widget1);
+        layoutWidget2 = new QWidget(frame);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(110, 10, 127, 52));
+        verticalLayout_3 = new QVBoxLayout(layoutWidget2);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        GroupNameEdit = new QLineEdit(widget1);
+        GroupNameEdit = new QLineEdit(layoutWidget2);
         GroupNameEdit->setObjectName(QStringLiteral("GroupNameEdit"));
 
         verticalLayout_3->addWidget(GroupNameEdit);
 
-        nameEdit = new QLineEdit(widget1);
+        nameEdit = new QLineEdit(layoutWidget2);
         nameEdit->setObjectName(QStringLiteral("nameEdit"));
 
         verticalLayout_3->addWidget(nameEdit);
 
-        widget2 = new QWidget(frame);
-        widget2->setObjectName(QStringLiteral("widget2"));
-        widget2->setGeometry(QRect(111, 77, 46, 20));
-        horizontalLayout_2 = new QHBoxLayout(widget2);
+        layoutWidget3 = new QWidget(frame);
+        layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(111, 77, 46, 20));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        statusLabel = new QLabel(widget2);
+        statusLabel = new QLabel(layoutWidget3);
         statusLabel->setObjectName(QStringLiteral("statusLabel"));
 
         horizontalLayout_2->addWidget(statusLabel);
 
-        statusRadioButton = new QRadioButton(widget2);
+        statusRadioButton = new QRadioButton(layoutWidget3);
         statusRadioButton->setObjectName(QStringLiteral("statusRadioButton"));
 
         horizontalLayout_2->addWidget(statusRadioButton);
 
-        widget3 = new QWidget(frame);
-        widget3->setObjectName(QStringLiteral("widget3"));
-        widget3->setGeometry(QRect(111, 100, 84, 61));
-        verticalLayout = new QVBoxLayout(widget3);
+        layoutWidget4 = new QWidget(frame);
+        layoutWidget4->setObjectName(QStringLiteral("layoutWidget4"));
+        layoutWidget4->setGeometry(QRect(111, 100, 84, 61));
+        verticalLayout = new QVBoxLayout(layoutWidget4);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 5, 0, 0);
-        idLabel = new QLabel(widget3);
+        idLabel = new QLabel(layoutWidget4);
         idLabel->setObjectName(QStringLiteral("idLabel"));
         idLabel->setMargin(0);
 
         verticalLayout->addWidget(idLabel);
 
-        deviceTypelabel = new QLabel(widget3);
+        deviceTypelabel = new QLabel(layoutWidget4);
         deviceTypelabel->setObjectName(QStringLiteral("deviceTypelabel"));
 
         verticalLayout->addWidget(deviceTypelabel);
 
         frame->raise();
         layoutWidget->raise();
-        layoutWidget->raise();
-        statusRadioButton->raise();
-        statusLabel->raise();
 
         retranslateUi(SettingsDialogWindow);
         QObject::connect(buttonBox, SIGNAL(accepted()), SettingsDialogWindow, SLOT(accept()));
