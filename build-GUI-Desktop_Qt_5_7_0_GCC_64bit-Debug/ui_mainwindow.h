@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -22,7 +21,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollBar>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -37,10 +36,10 @@ public:
     QAction *actionJ_A_R_V_I_S_project;
     QAction *actionDevelopers;
     QWidget *centralWidget;
-    QWidget *layoutWidget;
-    QGridLayout *mainLayout;
     QHBoxLayout *horizontalLayout_4;
-    QScrollBar *verticalScrollBar;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayoutLeft;
     QSpacerItem *horizontalSpacer_3;
     QVBoxLayout *verticalLayout;
@@ -59,12 +58,13 @@ public:
     QMenu *menuAbout;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QToolBar *toolBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(676, 373);
+        MainWindow->resize(596, 382);
         actionJ_A_R_V_I_S_project = new QAction(MainWindow);
         actionJ_A_R_V_I_S_project->setObjectName(QStringLiteral("actionJ_A_R_V_I_S_project"));
         actionJ_A_R_V_I_S_project->setCheckable(false);
@@ -72,36 +72,39 @@ public:
         actionDevelopers->setObjectName(QStringLiteral("actionDevelopers"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        layoutWidget = new QWidget(centralWidget);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 10, 611, 271));
-        mainLayout = new QGridLayout(layoutWidget);
-        mainLayout->setSpacing(6);
-        mainLayout->setContentsMargins(11, 11, 11, 11);
-        mainLayout->setObjectName(QStringLiteral("mainLayout"));
-        mainLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4 = new QHBoxLayout(centralWidget);
         horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        verticalScrollBar = new QScrollBar(layoutWidget);
-        verticalScrollBar->setObjectName(QStringLiteral("verticalScrollBar"));
-        verticalScrollBar->setOrientation(Qt::Vertical);
-
-        horizontalLayout_4->addWidget(verticalScrollBar);
-
-        verticalLayoutLeft = new QVBoxLayout();
+        scrollArea = new QScrollArea(centralWidget);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setMinimumSize(QSize(100, 60));
+        scrollArea->setMaximumSize(QSize(250, 16777215));
+        scrollArea->setLineWidth(1);
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        scrollArea->setWidgetResizable(true);
+        scrollArea->setAlignment(Qt::AlignJustify|Qt::AlignVCenter);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 157, 293));
+        verticalLayoutWidget = new QWidget(scrollAreaWidgetContents);
+        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(10, 10, 131, 271));
+        verticalLayoutLeft = new QVBoxLayout(verticalLayoutWidget);
         verticalLayoutLeft->setSpacing(6);
+        verticalLayoutLeft->setContentsMargins(11, 11, 11, 11);
         verticalLayoutLeft->setObjectName(QStringLiteral("verticalLayoutLeft"));
-        verticalLayoutLeft->setContentsMargins(-1, -1, 94, -1);
+        verticalLayoutLeft->setSizeConstraint(QLayout::SetMinAndMaxSize);
+        verticalLayoutLeft->setContentsMargins(0, 0, 0, 0);
+        scrollArea->setWidget(scrollAreaWidgetContents);
 
-        horizontalLayout_4->addLayout(verticalLayoutLeft);
-
-
-        mainLayout->addLayout(horizontalLayout_4, 0, 0, 2, 1);
+        horizontalLayout_4->addWidget(scrollArea);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        mainLayout->addItem(horizontalSpacer_3, 0, 1, 1, 1);
+        horizontalLayout_4->addItem(horizontalSpacer_3);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -109,12 +112,12 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(layoutWidget);
+        label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
 
         horizontalLayout->addWidget(label);
 
-        lineEdit = new QLineEdit(layoutWidget);
+        lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
         horizontalLayout->addWidget(lineEdit);
@@ -129,15 +132,16 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer);
 
-        addButton = new QPushButton(layoutWidget);
+        addButton = new QPushButton(centralWidget);
         addButton->setObjectName(QStringLiteral("addButton"));
         addButton->setMouseTracking(false);
-        addButton->setFlat(false);
+        addButton->setFlat(true);
 
         horizontalLayout_2->addWidget(addButton);
 
-        deleteButton = new QPushButton(layoutWidget);
+        deleteButton = new QPushButton(centralWidget);
         deleteButton->setObjectName(QStringLiteral("deleteButton"));
+        deleteButton->setFlat(true);
 
         horizontalLayout_2->addWidget(deleteButton);
 
@@ -151,25 +155,26 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_2);
 
-        settingsButton = new QPushButton(layoutWidget);
+        settingsButton = new QPushButton(centralWidget);
         settingsButton->setObjectName(QStringLiteral("settingsButton"));
+        settingsButton->setFlat(true);
 
         horizontalLayout_3->addWidget(settingsButton);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-
-        mainLayout->addLayout(verticalLayout, 0, 2, 1, 1);
-
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        mainLayout->addItem(verticalSpacer, 1, 2, 1, 1);
+        verticalLayout->addItem(verticalSpacer);
+
+
+        horizontalLayout_4->addLayout(verticalLayout);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 676, 19));
+        menuBar->setGeometry(QRect(0, 0, 596, 19));
         menuAbout = new QMenu(menuBar);
         menuAbout->setObjectName(QStringLiteral("menuAbout"));
         MainWindow->setMenuBar(menuBar);
@@ -179,6 +184,9 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        toolBar = new QToolBar(MainWindow);
+        toolBar->setObjectName(QStringLiteral("toolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         menuBar->addAction(menuAbout->menuAction());
         menuAbout->addAction(actionJ_A_R_V_I_S_project);
@@ -194,15 +202,16 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         actionJ_A_R_V_I_S_project->setText(QApplication::translate("MainWindow", "J.A.R.V.I.S project", 0));
         actionDevelopers->setText(QApplication::translate("MainWindow", "Developers", 0));
-        label->setText(QApplication::translate("MainWindow", "Enter button name", 0));
+        label->setText(QApplication::translate("MainWindow", "Enter device name", 0));
         lineEdit->setText(QApplication::translate("MainWindow", "name", 0));
 #ifndef QT_NO_STATUSTIP
         addButton->setStatusTip(QString());
 #endif // QT_NO_STATUSTIP
-        addButton->setText(QApplication::translate("MainWindow", "Create button", 0));
-        deleteButton->setText(QApplication::translate("MainWindow", "Delete button", 0));
+        addButton->setText(QApplication::translate("MainWindow", "Create", 0));
+        deleteButton->setText(QApplication::translate("MainWindow", "Delete", 0));
         settingsButton->setText(QApplication::translate("MainWindow", "Settings", 0));
         menuAbout->setTitle(QApplication::translate("MainWindow", "About", 0));
+        toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
     } // retranslateUi
 
 };

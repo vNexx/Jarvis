@@ -6,9 +6,39 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->verticalScrollBar->hide();   
+    ui->verticalLayoutLeft->setSpacing(10);
+
     ui->deleteButton->setDisabled(true);
     ui->settingsButton->setDisabled(true);
+    stylesList[0] = "QPushButton {"
+                    "   background-color: rgb(93, 240, 84);"
+                    "   border : none;"
+                    "   font:  14px;"
+                    "   max-width: 200px;"
+                    "   min-width: 80px;"
+                    "   min-height: 25px;"
+                    "   padding: 5px;"
+                    "}"
+                    "QPushButton:hover {"
+                    "   background-color: #61b7ff;"
+                    " }"
+                    "QPushButton:focus { "
+                    "   background-color: #61b7ff;"
+                    " }"
+                    "QPushButton:pressed {"
+                    "   background-color: #54dff0;"
+                    " }"
+                    "QPushButton:disabled {"
+                    "   color: #fff;"
+                    "   backgrounf-color: #989898;"
+
+                    " }";
+
+
+    ui->addButton->setStyleSheet(stylesList[0]);
+    ui->deleteButton->setStyleSheet(stylesList[0]);
+    ui->settingsButton->setStyleSheet(stylesList[0]);
+
 }
 
 MainWindow::~MainWindow()
@@ -18,9 +48,9 @@ MainWindow::~MainWindow()
 
 bool MainWindow::checkName(const QString& name) const
 {
-    for(int i = 0; i < ui->verticalLayoutLeft->count(); ++i)
+    for(size_t i = 0; i < buttonList.size(); ++i)
     {
-        DynamicButton *button = qobject_cast<DynamicButton*>(ui->verticalLayoutLeft->itemAt(i)->widget());
+        DynamicButton *button = buttonList[i];
         if(button->text() == name)                 
             return false;
 
@@ -44,6 +74,11 @@ void MainWindow::on_addButton_clicked()
         ui->settingsButton->setDisabled(false);
 
         DynamicButton *button = new DynamicButton(this);  // Создаем объект динамической кнопки
+
+        button->setFlat(true);
+
+        button->setStyleSheet(stylesList[0]);
+        button->setMaximumWidth(200);
         buttonList.push_back(button);
 
         /* Устанавливаем имя кнопки с заданым именем
@@ -53,10 +88,8 @@ void MainWindow::on_addButton_clicked()
 
         /* Добавляем кнопку в слой с вертикальной компоновкой
          * */
-        ui->verticalLayoutLeft->addWidget(button);
+        ui->verticalLayoutLeft->addWidget(button,buttonList.size()-1);
 
-        if (buttonList.size() > 6)
-            ui->verticalScrollBar->show();
 
         /* Подключаем сигнал нажатия кнопки к СЛОТ получения номера кнопки
          * */
@@ -90,8 +123,7 @@ void MainWindow::on_deleteButton_clicked()
             break;
         }
     }
-    if (buttonList.size() <= 6)
-        ui->verticalScrollBar->hide();
+
 }
 
 /* СЛОТ для получения номера кнопки.
@@ -114,25 +146,26 @@ void MainWindow::slotGetButtonName()
 void MainWindow::on_settingsButton_clicked()
 {
     if(checkName(ui->lineEdit->text()))
-        QMessageBox::information(nullptr, QString("warning"), QString("Name doesn't exist"));
+        QMessageBox::information(nullptr, QString("warning"),
+                                 ui->lineEdit->text() +  QString(" doesn't exist"));
     else
     {
-        for(int i = 0; i < ui->verticalLayoutLeft->count(); ++i)
+        for(size_t i = 0; i < buttonList.size(); ++i)
         {
-            DynamicButton *button = qobject_cast<DynamicButton*>(ui->verticalLayoutLeft->itemAt(i)->widget());
+            DynamicButton *button = buttonList[i];
             if(button->text() == ui->lineEdit->text())
             {
                 SettingsDialogWindow *settings = new SettingsDialogWindow(this, button);
-                settings->show();//вызов диалогового окна настроек
+                settings->show(); //вызов диалогового окна настроек
             }
         }
     }
 
 }
 
-void MainWindow::on_lineEdit_textChanged(const QString &arg1)
+void MainWindow::on_lineEdit_textChanged(const QString &str)
 {
-    if(arg1.isEmpty())
+    if(str.isEmpty())
     {
         ui->addButton->setDisabled(true);
         ui->deleteButton->setDisabled(true);

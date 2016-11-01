@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[8];
-    char stringdata0[130];
+    char stringdata0[129];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,13 +36,13 @@ QT_MOC_LITERAL(3, 33, 23), // "on_deleteButton_clicked"
 QT_MOC_LITERAL(4, 57, 17), // "slotGetButtonName"
 QT_MOC_LITERAL(5, 75, 25), // "on_settingsButton_clicked"
 QT_MOC_LITERAL(6, 101, 23), // "on_lineEdit_textChanged"
-QT_MOC_LITERAL(7, 125, 4) // "arg1"
+QT_MOC_LITERAL(7, 125, 3) // "str"
 
     },
     "MainWindow\0on_addButton_clicked\0\0"
     "on_deleteButton_clicked\0slotGetButtonName\0"
     "on_settingsButton_clicked\0"
-    "on_lineEdit_textChanged\0arg1"
+    "on_lineEdit_textChanged\0str"
 };
 #undef QT_MOC_LITERAL
 

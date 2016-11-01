@@ -29,11 +29,12 @@ private slots:
     void slotGetButtonName();       // СЛОТ для получения имени нажатой динамической кнопки
 
     void on_settingsButton_clicked();
-    void on_lineEdit_textChanged(const QString &arg1);
+    void on_lineEdit_textChanged(const QString &str);
 
 private:
     Ui::MainWindow *ui;
     std::vector<DynamicButton*> buttonList;
+    QString stylesList[10];
 
 
 };
