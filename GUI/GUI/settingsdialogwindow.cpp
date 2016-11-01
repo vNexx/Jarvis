@@ -57,7 +57,7 @@ void SettingsDialogWindow::on_buttonBox_clicked(QAbstractButton *button)
             for(size_t i = 0; i < buttonList.size(); ++i)
             {
                 DynamicButton *button = buttonList[i];
-                if(button->getDeviceName() == ui->nameEdit->text())
+                if(button->getDeviceName() == ui->nameEdit->text()   && button != deviceButton)
                 {
                     QMessageBox::information(nullptr, QString("Warning"), QString("Name is already used"));
                     return;

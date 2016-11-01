@@ -23,9 +23,15 @@ SmartBulbConfig::SmartBulbConfig(QWidget *parent, DynamicButton *button):
 
 
     if(deviceButton->getDeviceStatus())
+    {
+       ui->statusLabel->setText(QString("ON"));
        bulbImg.load( ":/images/bulbOn.png" );
+    }
     else
+    {
+        ui->statusLabel->setText(QString("OFF"));
         bulbImg.load( ":/images/bulbOff.png" );
+    }
     ui->bulbImage->setPixmap(bulbImg);
 
 
