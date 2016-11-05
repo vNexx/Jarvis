@@ -22,7 +22,6 @@ DynamicButton::DynamicButton(DynamicButton *btn, QWidget *parent) :  SmartBulb(p
     this->setMaximumWidth(200);
     this->setText(btn->text());
     this->setDeviceName(btn->text());
-    this->setGroupName(btn->getGroupName());
     this->setBrightness(btn->getBrightness());
     this->setBulbColor(btn->getBulbColor());
     this->setDeviceID(buttonID);

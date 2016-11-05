@@ -50,10 +50,12 @@ void MainWindow::deleteDynamicButton(const QString &buttonName)
 
         if(button->text() == buttonName)
         {
+            GroupTab *tab = getGroupTab(button->getGroupName(), false);
+            tab->layout->counter--;
             for(size_t j = i; j < buttonList.size() - 1; ++j)
-                std::swap(buttonList[j], buttonList[j + 1]);           //сдвигаем список кнопок
+                buttonList[j] = buttonList[j + 1];           //сдвигаем список кнопок
             buttonList.pop_back();                           //удаляем последний элемент из списка
-            getGroupTab(button->getGroupName(), false)->layout->counter--;
+
 
             button->hide();
             delete button;
@@ -253,6 +255,7 @@ void MainWindow::on_deleteGroup_clicked()
           DynamicButton *button = qobject_cast<DynamicButton*>(tab->layout->itemAt(i)->widget());
           DynamicButton *newButton = new DynamicButton(button, mainTab->layout);
           newButton->setStyleSheet(stylesList[0]);
+          newButton->setGroupName(mainTab->tab->text());
           deleteDynamicButton(button->text());
 
 
