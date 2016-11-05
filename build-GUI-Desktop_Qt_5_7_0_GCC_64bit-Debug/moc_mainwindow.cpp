@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[12];
-    char stringdata0[208];
+    char stringdata0[206];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,15 +38,15 @@ QT_MOC_LITERAL(5, 75, 20), // "slotOpenDeviceConfig"
 QT_MOC_LITERAL(6, 96, 25), // "on_settingsButton_clicked"
 QT_MOC_LITERAL(7, 122, 23), // "on_lineEdit_textChanged"
 QT_MOC_LITERAL(8, 146, 3), // "str"
-QT_MOC_LITERAL(9, 150, 14), // "on_tab_clicked"
-QT_MOC_LITERAL(10, 165, 19), // "on_addGroup_clicked"
-QT_MOC_LITERAL(11, 185, 22) // "on_deleteGroup_clicked"
+QT_MOC_LITERAL(9, 150, 12), // "onTabClicked"
+QT_MOC_LITERAL(10, 163, 19), // "on_addGroup_clicked"
+QT_MOC_LITERAL(11, 183, 22) // "on_deleteGroup_clicked"
 
     },
     "MainWindow\0on_addButton_clicked\0\0"
     "on_deleteButton_clicked\0slotGetButtonName\0"
     "slotOpenDeviceConfig\0on_settingsButton_clicked\0"
-    "on_lineEdit_textChanged\0str\0on_tab_clicked\0"
+    "on_lineEdit_textChanged\0str\0onTabClicked\0"
     "on_addGroup_clicked\0on_deleteGroup_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -101,7 +101,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->slotOpenDeviceConfig(); break;
         case 4: _t->on_settingsButton_clicked(); break;
         case 5: _t->on_lineEdit_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 6: _t->on_tab_clicked(); break;
+        case 6: _t->onTabClicked(); break;
         case 7: _t->on_addGroup_clicked(); break;
         case 8: _t->on_deleteGroup_clicked(); break;
         default: ;

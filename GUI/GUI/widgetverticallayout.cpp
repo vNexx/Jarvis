@@ -5,6 +5,7 @@ WidgetVerticalLayout::WidgetVerticalLayout(QWidget *parent)
 {
     vertLayout = new QGridLayout(parent);
     vertLayout->setSizeConstraint(QLayout::SetMaximumSize);
+
     this->setFixedHeight(35);
     counter = 0;
     //this->setMinimumHeight(15);
@@ -21,6 +22,7 @@ void WidgetVerticalLayout::addWidget(DynamicButton *widget)
     vertLayout->addWidget(widget, count(), 0);
     counter++;
     //this->setFixedHeight(35 * count() );
+    vertLayout->setRowMinimumHeight(count(), 35);
 
 }
 

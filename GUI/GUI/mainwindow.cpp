@@ -92,8 +92,9 @@ GroupTab* MainWindow::createGroupTab(QString tabName, QWidget *parent)
     ui->verticalLayoutLeft->addWidget(tab->layout);
 
     tab->tab->show();
+    tab->layout->show();
 
-    connect(tab->tab, SIGNAL(clicked()), this, SLOT(on_tab_clicked()));
+    connect(tab->tab, SIGNAL(clicked()), this, SLOT(onTabClicked()));
     return tab;
 }
 
@@ -126,6 +127,8 @@ void MainWindow::on_addButton_clicked()
 
 
         GroupTab *tab = getGroupTab(ui->groupNameEdit->text(), true, ui->scrollAreaWidgetContents);
+
+
 
         // Создаем объект динамической кнопки
         DynamicButton *button = createDynamicButton(ui->lineEdit->text(), tab->tab->text(), tab->layout);
@@ -215,16 +218,22 @@ void MainWindow::slotOpenDeviceConfig()
 
 }
 
-void MainWindow::on_tab_clicked()
+void MainWindow::onTabClicked()
 {
-    QPushButton *tab =(QPushButton*)sender();
+    QPushButton *tab = (QPushButton*)sender();
+     GroupTab *groupTab = getGroupTab(tab->text(), false);
 
     if(tab->isChecked())
     {
         tab->setIcon(QIcon(QPixmap(":/images/tabClosed")));
+        groupTab->layout->hide();
+
     }
     else
+    {
         tab->setIcon(QIcon(QPixmap(":/images/tabOpened")));
+        groupTab->layout->show();
+    }
 }
 
 void MainWindow::on_addGroup_clicked()

@@ -33,7 +33,7 @@ private slots:
     void on_settingsButton_clicked();
     void on_lineEdit_textChanged(const QString &str);
 
-    void on_tab_clicked();
+    void onTabClicked();
     void on_addGroup_clicked();
     void on_deleteGroup_clicked();
 
