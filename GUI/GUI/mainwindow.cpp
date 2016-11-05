@@ -67,6 +67,8 @@ void MainWindow::deleteDynamicButton(const QString &buttonName)
 GroupTab* MainWindow::getGroupTab(QString tabName,bool createIfNotExist, QWidget *parent)
 {
     GroupTab *tab = nullptr;
+    if(tabName.isEmpty())
+        tabName = QString("Main Group");
     for(size_t i = 0; i < groupList.size(); ++i)
     {
         tab = groupList[i];
