@@ -41,26 +41,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QLabel" name="bulbImage">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>40</y>
-     <width>91</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="res.qrc">:/images/bulbOff.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -199,6 +180,35 @@ border:none;
      </layout>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="bulbImage">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>50</y>
+     <width>91</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: none;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/bulbOff.png</normaloff>:/images/bulbOff.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>91</width>
+     <height>91</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
   </widget>
  </widget>
  <resources>

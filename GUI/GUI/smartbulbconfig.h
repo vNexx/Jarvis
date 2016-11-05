@@ -25,6 +25,8 @@ private slots:
     void on_statusCheckBox_clicked();
 
 
+    void on_bulbImage_clicked();
+
 private:
     Ui::SmartBulbConfig *ui;
     QString stylesList[stylesAmount];

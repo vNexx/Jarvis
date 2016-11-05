@@ -86,7 +86,7 @@ bool SmartDevice::setDeviceName(const QString &name)
 bool  SmartDevice::setDeviceID(int id)
 {
     int temp = deviceID;
-    if(id <= 0)
+    if(id < 0)
     {
         QMessageBox::information(nullptr, QString("warning"), QString("Error. Invalid device ID"));
         return false;

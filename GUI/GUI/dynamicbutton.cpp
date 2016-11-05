@@ -7,6 +7,31 @@ DynamicButton::DynamicButton(QWidget *parent) :  SmartBulb(parent)
                                * дальнейшая работа с кнопок
                                * */
     resBusyID[buttonID] = true; //ID кнпки теперь занят
+    this->setDeviceID(buttonID);
+    this->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
+    this->setFlat(true);
+    this->setMaximumWidth(200);
+}
+
+DynamicButton::DynamicButton(DynamicButton *btn, QWidget *parent) :  SmartBulb(parent)
+{
+    buttonID = findNewID();
+    resBusyID[buttonID] = true;
+    this->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
+    this->setFlat(true);
+    this->setMaximumWidth(200);
+    this->setText(btn->text());
+    this->setDeviceName(btn->text());
+    this->setGroupName(btn->getGroupName());
+    this->setBrightness(btn->getBrightness());
+    this->setBulbColor(btn->getBulbColor());
+    this->setDeviceID(buttonID);
+    if(btn->getDeviceStatus())
+        this->turnOnDevice();
+    else
+        this->turnOffDevice();
+
+
 }
 
 DynamicButton::~DynamicButton()

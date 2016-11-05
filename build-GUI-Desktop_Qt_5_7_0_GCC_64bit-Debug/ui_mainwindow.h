@@ -37,12 +37,7 @@ public:
     QAction *actionJ_A_R_V_I_S_project;
     QAction *actionDevelopers;
     QWidget *centralWidget;
-    QHBoxLayout *horizontalLayout_4;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QGridLayout *gridLayout;
-    QVBoxLayout *verticalLayoutLeft;
-    QSpacerItem *horizontalSpacer_3;
+    QGridLayout *gridLayout_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
@@ -51,10 +46,21 @@ public:
     QSpacerItem *horizontalSpacer;
     QPushButton *addButton;
     QPushButton *deleteButton;
+    QPushButton *settingsButton;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_2;
+    QLineEdit *groupNameEdit;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_2;
-    QPushButton *settingsButton;
+    QPushButton *addGroup;
+    QPushButton *deleteGroup;
     QSpacerItem *verticalSpacer;
+    QSpacerItem *horizontalSpacer_3;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QGridLayout *gridLayout;
+    QSpacerItem *verticalSpacer_2;
+    QVBoxLayout *verticalLayoutLeft;
     QMenuBar *menuBar;
     QMenu *menuAbout;
     QToolBar *mainToolBar;
@@ -73,43 +79,10 @@ public:
         actionDevelopers->setObjectName(QStringLiteral("actionDevelopers"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        horizontalLayout_4 = new QHBoxLayout(centralWidget);
-        horizontalLayout_4->setSpacing(6);
-        horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        scrollArea = new QScrollArea(centralWidget);
-        scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setMinimumSize(QSize(100, 60));
-        scrollArea->setMaximumSize(QSize(250, 16777215));
-        scrollArea->setLayoutDirection(Qt::LeftToRight);
-        scrollArea->setLineWidth(1);
-        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
-        scrollArea->setWidgetResizable(true);
-        scrollArea->setAlignment(Qt::AlignJustify|Qt::AlignTop);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 157, 293));
-        gridLayout = new QGridLayout(scrollAreaWidgetContents);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        verticalLayoutLeft = new QVBoxLayout();
-        verticalLayoutLeft->setSpacing(6);
-        verticalLayoutLeft->setObjectName(QStringLiteral("verticalLayoutLeft"));
-        verticalLayoutLeft->setSizeConstraint(QLayout::SetMaximumSize);
-
-        gridLayout->addLayout(verticalLayoutLeft, 0, 0, 1, 1);
-
-        scrollArea->setWidget(scrollAreaWidgetContents);
-
-        horizontalLayout_4->addWidget(scrollArea);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_4->addItem(horizontalSpacer_3);
-
+        gridLayout_2 = new QGridLayout(centralWidget);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -149,8 +122,31 @@ public:
 
         horizontalLayout_2->addWidget(deleteButton);
 
+        settingsButton = new QPushButton(centralWidget);
+        settingsButton->setObjectName(QStringLiteral("settingsButton"));
+        settingsButton->setFlat(true);
+
+        horizontalLayout_2->addWidget(settingsButton);
+
 
         verticalLayout->addLayout(horizontalLayout_2);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setContentsMargins(-1, 35, -1, -1);
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        horizontalLayout_4->addWidget(label_2);
+
+        groupNameEdit = new QLineEdit(centralWidget);
+        groupNameEdit->setObjectName(QStringLiteral("groupNameEdit"));
+
+        horizontalLayout_4->addWidget(groupNameEdit);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
@@ -159,21 +155,62 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_2);
 
-        settingsButton = new QPushButton(centralWidget);
-        settingsButton->setObjectName(QStringLiteral("settingsButton"));
-        settingsButton->setFlat(true);
+        addGroup = new QPushButton(centralWidget);
+        addGroup->setObjectName(QStringLiteral("addGroup"));
 
-        horizontalLayout_3->addWidget(settingsButton);
+        horizontalLayout_3->addWidget(addGroup);
+
+        deleteGroup = new QPushButton(centralWidget);
+        deleteGroup->setObjectName(QStringLiteral("deleteGroup"));
+
+        horizontalLayout_3->addWidget(deleteGroup);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addItem(verticalSpacer);
+        gridLayout_2->addLayout(verticalLayout, 0, 2, 1, 1);
 
+        verticalSpacer = new QSpacerItem(20, 130, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        horizontalLayout_4->addLayout(verticalLayout);
+        gridLayout_2->addItem(verticalSpacer, 1, 2, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_3, 0, 1, 1, 1);
+
+        scrollArea = new QScrollArea(centralWidget);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setMinimumSize(QSize(100, 60));
+        scrollArea->setMaximumSize(QSize(250, 16777215));
+        scrollArea->setLayoutDirection(Qt::LeftToRight);
+        scrollArea->setLineWidth(1);
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+        scrollArea->setWidgetResizable(true);
+        scrollArea->setAlignment(Qt::AlignJustify|Qt::AlignTop);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 130, 287));
+        gridLayout = new QGridLayout(scrollAreaWidgetContents);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_2, 1, 0, 1, 1);
+
+        verticalLayoutLeft = new QVBoxLayout();
+        verticalLayoutLeft->setSpacing(6);
+        verticalLayoutLeft->setObjectName(QStringLiteral("verticalLayoutLeft"));
+        verticalLayoutLeft->setSizeConstraint(QLayout::SetMaximumSize);
+
+        gridLayout->addLayout(verticalLayoutLeft, 0, 0, 1, 1);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        gridLayout_2->addWidget(scrollArea, 0, 0, 2, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -214,6 +251,10 @@ public:
         addButton->setText(QApplication::translate("MainWindow", "Create", 0));
         deleteButton->setText(QApplication::translate("MainWindow", "Delete", 0));
         settingsButton->setText(QApplication::translate("MainWindow", "Settings", 0));
+        label_2->setText(QApplication::translate("MainWindow", "Enter group name", 0));
+        groupNameEdit->setText(QApplication::translate("MainWindow", "Main Group", 0));
+        addGroup->setText(QApplication::translate("MainWindow", "Add Group", 0));
+        deleteGroup->setText(QApplication::translate("MainWindow", "Delete Group", 0));
         menuAbout->setTitle(QApplication::translate("MainWindow", "About", 0));
         toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
     } // retranslateUi

@@ -20,6 +20,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -30,8 +31,7 @@ class Ui_SmartBulbConfig
 {
 public:
     QDialogButtonBox *buttonBox;
-    QLabel *bulbImage;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
@@ -44,6 +44,7 @@ public:
     QLabel *label;
     QSlider *brightnessSlider;
     QLCDNumber *lcdNumber;
+    QPushButton *bulbImage;
 
     void setupUi(QDialog *SmartBulbConfig)
     {
@@ -62,20 +63,15 @@ public:
         buttonBox->setGeometry(QRect(30, 220, 341, 41));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-        bulbImage = new QLabel(SmartBulbConfig);
-        bulbImage->setObjectName(QStringLiteral("bulbImage"));
-        bulbImage->setGeometry(QRect(290, 40, 91, 91));
-        bulbImage->setPixmap(QPixmap(QString::fromUtf8(":/images/bulbOff.png")));
-        bulbImage->setScaledContents(true);
-        widget = new QWidget(SmartBulbConfig);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(20, 30, 251, 151));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(SmartBulbConfig);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(20, 30, 251, 151));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         QFont font;
         font.setPointSize(11);
@@ -83,7 +79,7 @@ public:
 
         horizontalLayout_2->addWidget(label_2);
 
-        bulbName = new QLabel(widget);
+        bulbName = new QLabel(layoutWidget);
         bulbName->setObjectName(QStringLiteral("bulbName"));
         bulbName->setFont(font);
 
@@ -94,19 +90,19 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setFont(font);
 
         horizontalLayout_3->addWidget(label_3);
 
-        statusLabel = new QLabel(widget);
+        statusLabel = new QLabel(layoutWidget);
         statusLabel->setObjectName(QStringLiteral("statusLabel"));
         statusLabel->setFont(font);
 
         horizontalLayout_3->addWidget(statusLabel);
 
-        statusCheckBox = new QCheckBox(widget);
+        statusCheckBox = new QCheckBox(layoutWidget);
         statusCheckBox->setObjectName(QStringLiteral("statusCheckBox"));
         statusCheckBox->setFont(font);
 
@@ -117,13 +113,13 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setFont(font);
 
         horizontalLayout->addWidget(label);
 
-        brightnessSlider = new QSlider(widget);
+        brightnessSlider = new QSlider(layoutWidget);
         brightnessSlider->setObjectName(QStringLiteral("brightnessSlider"));
         brightnessSlider->setMinimum(1);
         brightnessSlider->setMaximum(100);
@@ -131,7 +127,7 @@ public:
 
         horizontalLayout->addWidget(brightnessSlider);
 
-        lcdNumber = new QLCDNumber(widget);
+        lcdNumber = new QLCDNumber(layoutWidget);
         lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
         lcdNumber->setFont(font);
         lcdNumber->setStyleSheet(QLatin1String("color:rgb(0, 197, 0);\n"
@@ -150,6 +146,15 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        bulbImage = new QPushButton(SmartBulbConfig);
+        bulbImage->setObjectName(QStringLiteral("bulbImage"));
+        bulbImage->setGeometry(QRect(290, 50, 91, 91));
+        bulbImage->setStyleSheet(QStringLiteral("border: none;"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/images/bulbOff.png"), QSize(), QIcon::Normal, QIcon::Off);
+        bulbImage->setIcon(icon);
+        bulbImage->setIconSize(QSize(91, 91));
+        bulbImage->setFlat(true);
 
         retranslateUi(SmartBulbConfig);
         QObject::connect(buttonBox, SIGNAL(accepted()), SmartBulbConfig, SLOT(accept()));
@@ -161,13 +166,13 @@ public:
     void retranslateUi(QDialog *SmartBulbConfig)
     {
         SmartBulbConfig->setWindowTitle(QApplication::translate("SmartBulbConfig", "Bulb Configuration", 0));
-        bulbImage->setText(QString());
         label_2->setText(QApplication::translate("SmartBulbConfig", "Bulb Name: ", 0));
         bulbName->setText(QApplication::translate("SmartBulbConfig", "Smart Bulb", 0));
         label_3->setText(QApplication::translate("SmartBulbConfig", "Status:               ", 0));
         statusLabel->setText(QApplication::translate("SmartBulbConfig", "OFF", 0));
         statusCheckBox->setText(QString());
         label->setText(QApplication::translate("SmartBulbConfig", "Brightness: ", 0));
+        bulbImage->setText(QString());
     } // retranslateUi
 
 };

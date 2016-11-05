@@ -25,16 +25,19 @@ SmartBulbConfig::SmartBulbConfig(QWidget *parent, DynamicButton *button):
     if(deviceButton->getDeviceStatus())
     {
        ui->statusLabel->setText(QString("ON"));
+       ui->statusCheckBox->setChecked(true);
+
        bulbImg.load( ":/images/bulbOn.png" );
     }
     else
     {
         ui->statusLabel->setText(QString("OFF"));
+        ui->statusCheckBox->setChecked(false);
         bulbImg.load( ":/images/bulbOff.png" );
     }
-    ui->bulbImage->setPixmap(bulbImg);
 
-
+    ui->bulbImage->setIcon(QIcon(bulbImg));
+    ui->bulbImage->setIconSize(ui->bulbImage->size());
 }
 
 SmartBulbConfig::~SmartBulbConfig()
@@ -66,7 +69,13 @@ void SmartBulbConfig::on_statusCheckBox_clicked()
         deviceButton->turnOffDevice();
         bulbImg.load( ":/images/bulbOff.png" );
     }
-    ui->bulbImage->setPixmap(bulbImg);
+    ui->bulbImage->setIcon(QIcon(bulbImg));
 }
 
 
+
+void SmartBulbConfig::on_bulbImage_clicked()
+{
+    ui->statusCheckBox->setChecked(!ui->statusCheckBox->isChecked());
+    emit(on_statusCheckBox_clicked());
+}

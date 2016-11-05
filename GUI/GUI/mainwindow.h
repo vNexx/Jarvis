@@ -7,6 +7,7 @@
 #include <vector>
 #include "settingsdialogwindow.h"
 #include "smartbulbconfig.h"
+#include "grouptab.h"
 
 
 namespace Ui {
@@ -32,9 +33,20 @@ private slots:
     void on_settingsButton_clicked();
     void on_lineEdit_textChanged(const QString &str);
 
+    void on_tab_clicked();
+    void on_addGroup_clicked();
+    void on_deleteGroup_clicked();
+
 private:
+    DynamicButton* createDynamicButton(const QString &buttonName, const QString groupName, QWidget *parent = 0);
+    void           deleteDynamicButton(const QString &buttonName);
+    GroupTab*      getGroupTab(QString tabName, bool createIfNotExist, QWidget *parent = 0);
+    GroupTab*      createGroupTab(QString tabName, QWidget *parent = 0);
+
+
     Ui::MainWindow *ui;
     std::vector<DynamicButton*> buttonList;
+    std::vector<GroupTab*>       groupList;
     QString stylesList[stylesAmount];
 
 
