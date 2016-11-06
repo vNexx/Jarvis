@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
+
 }
 
 MainWindow::~MainWindow()
@@ -62,6 +63,26 @@ void MainWindow::deleteDynamicButton(const QString &buttonName)
             break;
         }
     }
+}
+
+void MainWindow::changeDeviceGroupTab(QString newGroupTabName, DynamicButton *btn)
+{
+    GroupTab *tab = getGroupTab(newGroupTabName, true, ui->scrollAreaWidgetContents);
+
+    DynamicButton *newButton = new DynamicButton(btn, tab->layout);
+
+    newButton->setStyleSheet(stylesList[0]);
+    newButton->setGroupName(tab->tab->text());
+
+    deleteDynamicButton(btn->text());
+
+    buttonList.push_back(newButton);
+    tab->layout->addWidget(newButton);
+    newButton->show();
+
+    connect(newButton, SIGNAL(clicked()), this, SLOT(slotGetButtonName()));
+    connect(newButton, SIGNAL(clicked()), this, SLOT(slotOpenDeviceConfig()));
+
 }
 
 GroupTab* MainWindow::getGroupTab(QString tabName,bool createIfNotExist, QWidget *parent)
@@ -192,7 +213,9 @@ void MainWindow::on_settingsButton_clicked()
             DynamicButton *button = buttonList[i];
             if(button->text() == ui->lineEdit->text())
             {
-                SettingsDialogWindow *settings = new SettingsDialogWindow(this, button, buttonList);
+                SettingsDialogWindow *settings = new SettingsDialogWindow(this, button, buttonList, groupList);
+                connect(settings, SIGNAL(deviceGroupChanged(QString , DynamicButton *)),
+                        this, SLOT(changeDeviceGroupTab(QString , DynamicButton *)));
                 settings->show(); //вызов диалогового окна настроек
             }
         }

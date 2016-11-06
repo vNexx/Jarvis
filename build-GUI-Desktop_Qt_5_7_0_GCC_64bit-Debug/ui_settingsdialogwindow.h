@@ -44,8 +44,8 @@ public:
     QLabel *label_5;
     QWidget *layoutWidget2;
     QVBoxLayout *verticalLayout_3;
-    QLineEdit *GroupNameEdit;
     QLineEdit *nameEdit;
+    QLineEdit *GroupNameEdit;
     QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *statusLabel;
@@ -129,17 +129,17 @@ public:
         verticalLayout_3 = new QVBoxLayout(layoutWidget2);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        GroupNameEdit = new QLineEdit(layoutWidget2);
-        GroupNameEdit->setObjectName(QStringLiteral("GroupNameEdit"));
-        GroupNameEdit->setFont(font);
-
-        verticalLayout_3->addWidget(GroupNameEdit);
-
         nameEdit = new QLineEdit(layoutWidget2);
         nameEdit->setObjectName(QStringLiteral("nameEdit"));
         nameEdit->setFont(font);
 
         verticalLayout_3->addWidget(nameEdit);
+
+        GroupNameEdit = new QLineEdit(layoutWidget2);
+        GroupNameEdit->setObjectName(QStringLiteral("GroupNameEdit"));
+        GroupNameEdit->setFont(font);
+
+        verticalLayout_3->addWidget(GroupNameEdit);
 
         layoutWidget3 = new QWidget(frame);
         layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
@@ -196,8 +196,8 @@ public:
         label_3->setText(QApplication::translate("SettingsDialogWindow", "Device Status:", 0));
         label_4->setText(QApplication::translate("SettingsDialogWindow", "Device ID:", 0));
         label_5->setText(QApplication::translate("SettingsDialogWindow", "Device Type:", 0));
-        GroupNameEdit->setText(QApplication::translate("SettingsDialogWindow", "name", 0));
         nameEdit->setText(QApplication::translate("SettingsDialogWindow", "name", 0));
+        GroupNameEdit->setText(QApplication::translate("SettingsDialogWindow", "name", 0));
         statusLabel->setText(QApplication::translate("SettingsDialogWindow", "OFF", 0));
         statusRadioButton->setText(QString());
         idLabel->setText(QApplication::translate("SettingsDialogWindow", "ID", 0));

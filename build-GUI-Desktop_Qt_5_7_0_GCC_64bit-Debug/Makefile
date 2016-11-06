@@ -740,17 +740,17 @@ moc_mainwindow.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
-		../GUI/GUI/styles.h \
-		../GUI/GUI/smartbulbconfig.h \
-		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		../GUI/GUI/grouptab.h \
 		../GUI/GUI/widgetverticallayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../GUI/GUI/styles.h \
+		../GUI/GUI/smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/bin/moc
 	/home/nexx/Qt/5.7/gcc_64/bin/moc $(DEFINES) -I/home/nexx/Qt/5.7/gcc_64/mkspecs/linux-g++ -I/home/nexx/github/Jarvis/GUI/GUI -I/home/nexx/Qt/5.7/gcc_64/include -I/home/nexx/Qt/5.7/gcc_64/include/QtWidgets -I/home/nexx/Qt/5.7/gcc_64/include/QtGui -I/home/nexx/Qt/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../GUI/GUI/mainwindow.h -o moc_mainwindow.cpp
@@ -1080,6 +1080,14 @@ moc_settingsdialogwindow.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
+		../GUI/GUI/grouptab.h \
+		../GUI/GUI/widgetverticallayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
 		../GUI/GUI/styles.h \
 		../GUI/GUI/settingsdialogwindow.h \
 		../../../Qt/5.7/gcc_64/bin/moc
@@ -1406,11 +1414,11 @@ moc_widgetverticallayout.cpp: ../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt/5.7/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qtouchdevice.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
 		../GUI/GUI/dynamicbutton.h \
 		../GUI/GUI/smartbulb.h \
 		../GUI/GUI/smartdevice.h \
@@ -1569,17 +1577,17 @@ main.o: ../GUI/GUI/main.cpp ../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
-		../GUI/GUI/styles.h \
-		../GUI/GUI/smartbulbconfig.h \
-		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		../GUI/GUI/grouptab.h \
 		../GUI/GUI/widgetverticallayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../GUI/GUI/styles.h \
+		../GUI/GUI/smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qapplication.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1705,17 +1713,17 @@ mainwindow.o: ../GUI/GUI/mainwindow.cpp ../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
-		../GUI/GUI/styles.h \
-		../GUI/GUI/smartbulbconfig.h \
-		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		../GUI/GUI/grouptab.h \
 		../GUI/GUI/widgetverticallayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../GUI/GUI/styles.h \
+		../GUI/GUI/smartbulbconfig.h \
+		../../../Qt/5.7/gcc_64/include/QtGui/QPixmap \
 		ui_mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
@@ -1730,7 +1738,6 @@ mainwindow.o: ../GUI/GUI/mainwindow.cpp ../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qinputmethod.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QHBoxLayout \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qheaderview.h \
@@ -1766,7 +1773,8 @@ mainwindow.o: ../GUI/GUI/mainwindow.cpp ../GUI/GUI/mainwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QStatusBar \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QToolBar \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qtoolbar.h
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qtoolbar.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../GUI/GUI/mainwindow.cpp
 
 smartdevice.o: ../GUI/GUI/smartdevice.cpp ../GUI/GUI/smartdevice.h \
@@ -2093,6 +2101,14 @@ settingsdialogwindow.o: ../GUI/GUI/settingsdialogwindow.cpp ../GUI/GUI/settingsd
 		../../../Qt/5.7/gcc_64/include/QtCore/QString \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
+		../GUI/GUI/grouptab.h \
+		../GUI/GUI/widgetverticallayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
 		../GUI/GUI/styles.h \
 		ui_settingsdialogwindow.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/QVariant \
@@ -2113,10 +2129,6 @@ settingsdialogwindow.o: ../GUI/GUI/settingsdialogwindow.cpp ../GUI/GUI/settingsd
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QFrame \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qheaderview.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
@@ -2145,8 +2157,7 @@ settingsdialogwindow.o: ../GUI/GUI/settingsdialogwindow.cpp ../GUI/GUI/settingsd
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QRadioButton \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QWidget
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o settingsdialogwindow.o ../GUI/GUI/settingsdialogwindow.cpp
 
 dynamicbutton.o: ../GUI/GUI/dynamicbutton.cpp ../GUI/GUI/dynamicbutton.h \
@@ -2550,11 +2561,11 @@ widgetverticallayout.o: ../GUI/GUI/widgetverticallayout.cpp ../GUI/GUI/widgetver
 		../../../Qt/5.7/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qtouchdevice.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
 		../GUI/GUI/dynamicbutton.h \
 		../GUI/GUI/smartbulb.h \
 		../GUI/GUI/smartdevice.h \
@@ -2667,11 +2678,11 @@ grouptab.o: ../GUI/GUI/grouptab.cpp ../GUI/GUI/grouptab.h \
 		../../../Qt/5.7/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.7/gcc_64/include/QtGui/qtouchdevice.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
 		../../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
 		../GUI/GUI/dynamicbutton.h \
 		../GUI/GUI/smartbulb.h \
 		../GUI/GUI/smartdevice.h \

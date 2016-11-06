@@ -181,7 +181,7 @@ public:
 
         scrollArea = new QScrollArea(centralWidget);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setMinimumSize(QSize(120, 60));
+        scrollArea->setMinimumSize(QSize(250, 60));
         scrollArea->setMaximumSize(QSize(300, 16777215));
         scrollArea->setLayoutDirection(Qt::LeftToRight);
         scrollArea->setLineWidth(1);
@@ -192,7 +192,7 @@ public:
         scrollArea->setAlignment(Qt::AlignJustify|Qt::AlignTop);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 130, 287));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 248, 287));
         gridLayout = new QGridLayout(scrollAreaWidgetContents);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);

@@ -3,6 +3,7 @@
 #include <QDialog>
 #include <vector>
 #include "dynamicbutton.h"
+#include "grouptab.h"
 #include "styles.h"
 
 namespace Ui {
@@ -15,7 +16,9 @@ class SettingsDialogWindow : public QDialog
 
 public:
     explicit SettingsDialogWindow(QWidget *parent = 0);
-    SettingsDialogWindow(QWidget *parent, DynamicButton *btn, const std::vector<DynamicButton*> &btnList);
+    SettingsDialogWindow(QWidget *parent, DynamicButton *btn,
+                         const std::vector<DynamicButton*> &btnList,
+                         std::vector<GroupTab*> &grpList);
     ~SettingsDialogWindow();
 
 private slots:
@@ -25,11 +28,17 @@ private slots:
 
     void on_statusRadioButton_clicked();
 
+signals:
+    void deviceGroupChanged(QString newGroupName, DynamicButton *btn);
+
 private:
     Ui::SettingsDialogWindow    *ui;
     DynamicButton               *deviceButton;
     std::vector<DynamicButton*>  buttonList;
+    std::vector<GroupTab*>       groupList;
     QString                      stylesList[stylesAmount];
+
+
 
 };
 

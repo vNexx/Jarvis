@@ -34,6 +34,7 @@ private slots:
     void on_lineEdit_textChanged(const QString &str);
 
     void onTabClicked();
+    void changeDeviceGroupTab(QString newGroupTabName, DynamicButton *btn);
     void on_addGroup_clicked();
     void on_deleteGroup_clicked();
 

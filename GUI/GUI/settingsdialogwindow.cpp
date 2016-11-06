@@ -9,12 +9,15 @@ SettingsDialogWindow::SettingsDialogWindow(QWidget *parent) :
 }
 
 
-SettingsDialogWindow::SettingsDialogWindow(QWidget *parent, DynamicButton *btn, const std::vector<DynamicButton *> &btnList) : SettingsDialogWindow(parent)
+SettingsDialogWindow::SettingsDialogWindow(QWidget *parent, DynamicButton *btn,
+                                           const std::vector<DynamicButton *> &btnList,
+                                           std::vector<GroupTab *> &grpList)  : SettingsDialogWindow(parent)
 
 {
 
     deviceButton = btn;
     buttonList = btnList;
+    groupList = grpList;
 
     ui->idLabel->setText(QString::number(deviceButton->getID()));
     ui->deviceTypelabel->setText(deviceButton->getDeviceType());
@@ -69,15 +72,13 @@ void SettingsDialogWindow::on_buttonBox_clicked(QAbstractButton *button)
         else
             QMessageBox::information(nullptr, QString("warning"), QString("Error. Empty device name"));
 
-        deviceButton->setGroupName(ui->GroupNameEdit->text());
 
         if(ui->statusRadioButton->isChecked())
             deviceButton->turnOnDevice();
         else
             deviceButton->turnOffDevice();
-
-
-
+        if(deviceButton->getGroupName() != ui->GroupNameEdit->text())
+            emit deviceGroupChanged(ui->GroupNameEdit->text(), deviceButton);
     }
 }
 
@@ -88,3 +89,7 @@ void SettingsDialogWindow::on_statusRadioButton_clicked()
     else
         ui->statusLabel->setText(QString("OFF"));
 }
+
+
+
+
