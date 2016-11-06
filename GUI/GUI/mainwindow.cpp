@@ -289,9 +289,9 @@ void MainWindow::on_deleteGroup_clicked()
     if(tab == mainTab)
         return;
 
-    for( int i = 0; i < tab->layout->count(); )
+    while( tab->layout->count() > 0 )
     {
-          DynamicButton *button = qobject_cast<DynamicButton*>(tab->layout->vertLayout->itemAt(i)->widget());
+          DynamicButton *button = qobject_cast<DynamicButton*>(tab->layout->vertLayout->itemAt(0)->widget());
           DynamicButton *newButton = new DynamicButton(button, mainTab->layout);
 
           newButton->setStyleSheet(stylesList[0]);

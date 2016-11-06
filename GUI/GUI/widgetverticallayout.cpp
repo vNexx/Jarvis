@@ -15,7 +15,7 @@ WidgetVerticalLayout::~WidgetVerticalLayout()
 
 void WidgetVerticalLayout::addWidget(DynamicButton *widget)
 {
-    vertLayout->addWidget(widget, count(), 0);
+    vertLayout->addWidget(widget, vertLayout->rowCount(), 0);
 }
 
 void WidgetVerticalLayout::hideWidgets()
