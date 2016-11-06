@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->verticalLayoutLeft->setSpacing(10);
-
     ui->deleteButton->setDisabled(true);
     ui->settingsButton->setDisabled(true);
 
@@ -132,14 +131,16 @@ void MainWindow::on_addButton_clicked()
         GroupTab *tab = getGroupTab(ui->groupNameEdit->text(), true, ui->scrollAreaWidgetContents);
 
 
-
         // Создаем объект динамической кнопки
         DynamicButton *button = createDynamicButton(ui->lineEdit->text(), tab->tab->text(), tab->layout);
 
         /* Добавляем кнопку в слой с вертикальной компоновкой
          * */
         tab->layout->addWidget(button);
-        button->show();
+        if(tab->tab->isChecked())
+            button->hide();
+        else
+            button->show();
 
 
         /* Подключаем сигнал нажатия кнопки к СЛОТ получения номера кнопки
@@ -226,18 +227,19 @@ void MainWindow::slotOpenDeviceConfig()
 void MainWindow::onTabClicked()
 {
     QPushButton *tab = (QPushButton*)sender();
-     GroupTab *groupTab = getGroupTab(tab->text(), false);
+    GroupTab *groupTab = getGroupTab(tab->text(), false);
 
     if(tab->isChecked())
     {
         tab->setIcon(QIcon(QPixmap(":/images/tabClosed")));
+        groupTab->layout->hideWidgets();
         groupTab->layout->hide();
 
     }
     else
     {
         tab->setIcon(QIcon(QPixmap(":/images/tabOpened")));
-        groupTab->layout->show();
+        groupTab->layout->showWidgets();
     }
 }
 
@@ -268,10 +270,11 @@ void MainWindow::on_deleteGroup_clicked()
     {
           DynamicButton *button = qobject_cast<DynamicButton*>(tab->layout->vertLayout->itemAt(i)->widget());
           DynamicButton *newButton = new DynamicButton(button, mainTab->layout);
+
           newButton->setStyleSheet(stylesList[0]);
           newButton->setGroupName(mainTab->tab->text());
-          deleteDynamicButton(button->text());
 
+          deleteDynamicButton(button->text());
 
           buttonList.push_back(newButton);          
           mainTab->layout->addWidget(newButton);
@@ -290,5 +293,4 @@ void MainWindow::on_deleteGroup_clicked()
     }
     groupList.pop_back();
     delete tab;
-
 }

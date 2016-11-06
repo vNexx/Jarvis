@@ -15,7 +15,9 @@ public:
    ~WidgetVerticalLayout();
     QLayoutItem *itemAt(int index) const;
     void removeWidget(QWidget *widget);
-    void addWidget(DynamicButton *widget);    
+    void addWidget(DynamicButton *widget);
+    void hideWidgets();
+    void showWidgets();
     int  count() const;
 
 

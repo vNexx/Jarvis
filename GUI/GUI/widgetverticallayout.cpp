@@ -5,6 +5,7 @@ WidgetVerticalLayout::WidgetVerticalLayout(QWidget *parent)
 {
     vertLayout = new QGridLayout(parent);
     vertLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
+    vertLayout->setColumnMinimumWidth(0, 210);
 }
 
 WidgetVerticalLayout::~WidgetVerticalLayout()
@@ -15,7 +16,26 @@ WidgetVerticalLayout::~WidgetVerticalLayout()
 void WidgetVerticalLayout::addWidget(DynamicButton *widget)
 {
     vertLayout->addWidget(widget, count(), 0);
+}
 
+void WidgetVerticalLayout::hideWidgets()
+{
+    for(int i = 0; i < count(); ++i)
+        {
+            QWidget *widget = vertLayout->itemAt(i)->widget();
+            widget->hide();
+
+        }
+}
+
+void WidgetVerticalLayout::showWidgets()
+{
+    for(int i = 0; i < vertLayout->count(); ++i)
+        {
+            QWidget *widget = vertLayout->itemAt(i)->widget();
+            widget->show();
+
+        }
 }
 
 int  WidgetVerticalLayout::count() const

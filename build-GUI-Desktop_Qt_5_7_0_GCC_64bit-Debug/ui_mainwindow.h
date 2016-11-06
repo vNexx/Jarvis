@@ -181,8 +181,8 @@ public:
 
         scrollArea = new QScrollArea(centralWidget);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setMinimumSize(QSize(100, 60));
-        scrollArea->setMaximumSize(QSize(250, 16777215));
+        scrollArea->setMinimumSize(QSize(120, 60));
+        scrollArea->setMaximumSize(QSize(300, 16777215));
         scrollArea->setLayoutDirection(Qt::LeftToRight);
         scrollArea->setLineWidth(1);
         scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -204,7 +204,7 @@ public:
         verticalLayoutLeft = new QVBoxLayout();
         verticalLayoutLeft->setSpacing(6);
         verticalLayoutLeft->setObjectName(QStringLiteral("verticalLayoutLeft"));
-        verticalLayoutLeft->setSizeConstraint(QLayout::SetMaximumSize);
+        verticalLayoutLeft->setSizeConstraint(QLayout::SetMinAndMaxSize);
 
         gridLayout->addLayout(verticalLayoutLeft, 0, 0, 1, 1);
 
