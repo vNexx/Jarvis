@@ -289,7 +289,7 @@ void MainWindow::on_deleteGroup_clicked()
     if(tab == mainTab)
         return;
 
-    for( int i = 0; i < tab->layout->count(); ++i)
+    for( int i = 0; i < tab->layout->count(); )
     {
           DynamicButton *button = qobject_cast<DynamicButton*>(tab->layout->vertLayout->itemAt(i)->widget());
           DynamicButton *newButton = new DynamicButton(button, mainTab->layout);
@@ -306,8 +306,11 @@ void MainWindow::on_deleteGroup_clicked()
           connect(newButton, SIGNAL(clicked()), this, SLOT(slotGetButtonName()));
           connect(newButton, SIGNAL(clicked()), this, SLOT(slotOpenDeviceConfig()));
 
+
     }
 
+    mainTab->tab->setChecked(false);
+    mainTab->layout->showWidgets();
 
     for(size_t i = 0; i < groupList.size()-1; ++i)
     {
