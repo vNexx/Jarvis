@@ -26,10 +26,10 @@ private slots:
     void on_statusRadioButton_clicked();
 
 private:
-    Ui::SettingsDialogWindow *ui;
-    DynamicButton *deviceButton;
-    std::vector<DynamicButton*> buttonList;
-    QString stylesList[stylesAmount];
+    Ui::SettingsDialogWindow    *ui;
+    DynamicButton               *deviceButton;
+    std::vector<DynamicButton*>  buttonList;
+    QString                      stylesList[stylesAmount];
 
 };
 

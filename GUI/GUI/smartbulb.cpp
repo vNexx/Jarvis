@@ -17,11 +17,12 @@ SmartBulb::SmartBulb(QWidget *parent, const QString &groupName, const QString &d
     if(brightness >= 100)
         this->brightness = 100;
     this->color = color;
+    this->uploadDeviceConfig();
 }
 
 SmartBulb::~SmartBulb()
 {
-
+    //удалить из бд
 }
 
 bool SmartBulb::setBrightness(int brightness)

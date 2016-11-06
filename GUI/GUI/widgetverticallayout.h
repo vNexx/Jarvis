@@ -2,7 +2,6 @@
 #define WIDGETVERTICALLAYOUT_H
 
 #include <QWidget>
-//#include <QVBoxLayout>
 #include <QGridLayout>
 #include "dynamicbutton.h"
 
@@ -16,12 +15,10 @@ public:
    ~WidgetVerticalLayout();
     QLayoutItem *itemAt(int index) const;
     void removeWidget(QWidget *widget);
-    void addWidget(DynamicButton *widget);
+    void addWidget(DynamicButton *widget);    
     int  count() const;
 
-    int counter;
 
-private:
     QGridLayout *vertLayout;
 };
 

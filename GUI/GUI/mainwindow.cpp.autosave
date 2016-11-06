@@ -132,7 +132,6 @@ void MainWindow::on_addButton_clicked()
         GroupTab *tab = getGroupTab(ui->groupNameEdit->text(), true, ui->scrollAreaWidgetContents);
 
 
-
         // Создаем объект динамической кнопки
         DynamicButton *button = createDynamicButton(ui->lineEdit->text(), tab->tab->text(), tab->layout);
 

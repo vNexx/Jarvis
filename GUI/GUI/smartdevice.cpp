@@ -23,7 +23,7 @@ SmartDevice::SmartDevice(QWidget *parent, const QString& groupName, const QStrin
     else
         this->deviceName = deviceName;
 
-    if(id <= 0)
+    if(id < 0)
         QMessageBox::information(nullptr, QString("warning"), QString("Error. Invalid device ID"));
     else
         deviceID = id;
