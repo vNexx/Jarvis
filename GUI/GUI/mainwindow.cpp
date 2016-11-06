@@ -251,6 +251,7 @@ void MainWindow::onTabClicked()
 {
     QPushButton *tab = (QPushButton*)sender();
     GroupTab *groupTab = getGroupTab(tab->text(), false);
+    ui->groupNameEdit->setText(groupTab->tab->text());
 
     if(tab->isChecked())
     {
